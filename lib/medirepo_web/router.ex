@@ -1,14 +1,21 @@
 defmodule MedirepoWeb.Router do
   use MedirepoWeb, :router
 
+  alias MedirepoWeb.Plugs.UUIDChecker
+
   pipeline :api do
     plug :accepts, ["json"]
+    plug UUIDChecker
   end
 
   scope "/api", MedirepoWeb do
     pipe_through :api
-    resources "/hospitals", HospitalsController, except: [:new, :edit]
-    resources "/bulletins", BulletinsController, except: [:new, :edit]
+
+    get "/", RedirectController, :index
+    get "/hospitals", RedirectController, :index
+    get "/bulletins", RedirectController, :index
+    resources "/hospitals", HospitalsController, except: [:index, :new, :edit]
+    resources "/bulletins", BulletinsController, except: [:index, :new, :edit]
   end
 
   # Enables LiveDashboard only for development
