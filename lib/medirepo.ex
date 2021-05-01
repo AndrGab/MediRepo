@@ -11,11 +11,13 @@ defmodule Medirepo do
 
   defdelegate create_bulletin(params), to: BulletinCreate, as: :call
   defdelegate get_bulletin_by_id(id), to: BulletinGet, as: :by_id
+  defdelegate get_bulletins, to: BulletinGet, as: :get_all
   defdelegate delete_bulletin(id), to: BulletinDelete, as: :call
   defdelegate update_bulletin(params), to: BulletinUpdate, as: :call
 
   defdelegate create_hospital(params), to: HospitalCreate, as: :call
   defdelegate get_hospital_by_id(id), to: HospitalGet, as: :by_id
+  defdelegate get_hospitals, to: HospitalGet, as: :get_all
   defdelegate delete_hospital(id), to: HospitalDelete, as: :call
   defdelegate update_hospital(params), to: HospitalUpdate, as: :call
 end
