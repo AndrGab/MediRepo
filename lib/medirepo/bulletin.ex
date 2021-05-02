@@ -2,6 +2,7 @@ defmodule Medirepo.Bulletin do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Ecto.{UUID, Changeset}
   alias Medirepo.Hospital
 
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -64,6 +65,16 @@ defmodule Medirepo.Bulletin do
     |> validate_length(:obs, min: 6)
     |> validate_number(:atendimento, greater_than: 0)
     |> validate_number(:cd_paciente, greater_than: 0)
-    |> foreign_key_constraint(:hospital_id)
+    |> assoc_constraint(:hospital)
+    |> validate_uuid()
   end
+
+  defp validate_uuid(%Changeset{valid?: true, changes: %{hospital_id: id}} = changeset) do
+    case UUID.cast(id) do
+      :error -> add_error(changeset, :hospital_id, "Invalid UUID")
+      _ -> changeset
+    end
+  end
+
+  defp validate_uuid(changeset), do: changeset
 end

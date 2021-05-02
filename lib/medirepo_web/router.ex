@@ -8,13 +8,24 @@ defmodule MedirepoWeb.Router do
     plug UUIDChecker
   end
 
+  pipeline :auth do
+    plug MedirepoWeb.Auth.Pipeline
+  end
+
   scope "/api", MedirepoWeb do
     pipe_through :api
 
     get "/", RedirectController, :index
     get "/hospitals", RedirectController, :index
     get "/bulletins", RedirectController, :index
-    resources "/hospitals", HospitalsController, except: [:index, :new, :edit]
+    post "/hospitals", HospitalsController, :create
+    post "/hospitals/signin", HospitalsController, :sign_in
+  end
+
+  scope "/api", MedirepoWeb do
+    pipe_through [:api, :auth]
+
+    resources "/hospitals", HospitalsController, except: [:index, :create, :new, :edit]
     resources "/bulletins", BulletinsController, except: [:index, :new, :edit]
   end
 

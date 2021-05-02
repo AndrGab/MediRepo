@@ -14,6 +14,14 @@ config :medirepo, Medirepo.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
 
+config :medirepo, MedirepoWeb.Auth.Guardian,
+  issuer: "medirepo",
+  secret_key: "yRVGMXDyZkdOn8fbeKtg6+F7v3Lc7s5AwQXlWBCDo7pT4iY7Z3TcuACUeGO3M/ZO"
+
+config :medirepo, MedirepoWeb.Auth.Pipeline,
+  module: MedirepoWeb.Auth.Guardian,
+  error_handler: MedirepoWeb.Auth.ErrorHandler
+
 # Configures the endpoint
 config :medirepo, MedirepoWeb.Endpoint,
   url: [host: "localhost"],
