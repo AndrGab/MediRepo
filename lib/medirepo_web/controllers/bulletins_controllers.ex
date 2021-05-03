@@ -2,11 +2,16 @@ defmodule MedirepoWeb.BulletinsController do
   use MedirepoWeb, :controller
 
   alias Medirepo.Bulletin
+  alias MedirepoWeb.Auth.Guardian
   alias MedirepoWeb.FallbackController
 
   action_fallback FallbackController
 
   def create(conn, params) do
+    logged_hospital = Guardian.current_hospital(conn)
+
+    params = Map.put(params, "hospital_id", logged_hospital)
+
     with {:ok, %Bulletin{} = bulletin} <- Medirepo.create_bulletin(params) do
       conn
       |> put_status(:created)

@@ -65,7 +65,7 @@ defmodule Medirepo.Bulletin do
     |> validate_length(:obs, min: 6)
     |> validate_number(:atendimento, greater_than: 0)
     |> validate_number(:cd_paciente, greater_than: 0)
-    |> assoc_constraint(:hospital)
+    |> foreign_key_constraint(:hospital_id)
     |> validate_uuid()
   end
 

@@ -9,15 +9,17 @@ defmodule MedirepoWeb.HospitalsController do
 
   def create(conn, params) do
     with {:ok, %Hospital{} = hospital} <- Medirepo.create_hospital(params),
-         {:ok, token, _claims} <- Guardian.encode_and_sign(hospital, %{}, ttl: {5, :minute}) do
+         {:ok, token, _claims} <- Guardian.encode_and_sign(hospital, %{}, ttl: {30, :minute}) do
       conn
       |> put_status(:created)
       |> render("create.json", token: token, hospital: hospital)
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    with {:ok, %Hospital{} = hospital} <- Medirepo.get_hospital_by_id(id) do
+  def index(conn, _params) do
+    logged_hospital = Guardian.current_hospital(conn)
+
+    with {:ok, %Hospital{} = hospital} <- Medirepo.get_hospital_by_id(logged_hospital) do
       conn
       |> put_status(:ok)
       |> render("hospital.json", hospital: hospital)
@@ -32,8 +34,10 @@ defmodule MedirepoWeb.HospitalsController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    with {:ok, %Hospital{}} <- Medirepo.delete_hospital(id) do
+  def delete(conn, _params) do
+    logged_hospital = Guardian.current_hospital(conn)
+
+    with {:ok, %Hospital{}} <- Medirepo.delete_hospital(logged_hospital) do
       conn
       |> put_status(:no_content)
       |> text("")
@@ -41,6 +45,9 @@ defmodule MedirepoWeb.HospitalsController do
   end
 
   def update(conn, params) do
+    logged_hospital = Guardian.current_hospital(conn)
+    params = Map.put(params, "id", logged_hospital)
+
     with {:ok, %Hospital{} = hospital} <- Medirepo.update_hospital(params) do
       conn
       |> put_status(:ok)

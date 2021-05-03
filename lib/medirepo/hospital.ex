@@ -7,6 +7,7 @@ defmodule Medirepo.Hospital do
   alias Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
+
   @required_params [:email, :password, :name]
   @update_params [:email, :password, :name]
 

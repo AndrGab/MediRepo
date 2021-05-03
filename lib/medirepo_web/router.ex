@@ -16,7 +16,6 @@ defmodule MedirepoWeb.Router do
     pipe_through :api
 
     get "/", RedirectController, :index
-    get "/hospitals", RedirectController, :index
     get "/bulletins", RedirectController, :index
     post "/hospitals", HospitalsController, :create
     post "/hospitals/signin", HospitalsController, :sign_in
@@ -25,7 +24,10 @@ defmodule MedirepoWeb.Router do
   scope "/api", MedirepoWeb do
     pipe_through [:api, :auth]
 
-    resources "/hospitals", HospitalsController, except: [:index, :create, :new, :edit]
+    get "/hospitals", HospitalsController, :index
+    delete "/hospitals", HospitalsController, :delete
+    put "/hospitals", HospitalsController, :update
+
     resources "/bulletins", BulletinsController, except: [:index, :new, :edit]
   end
 
