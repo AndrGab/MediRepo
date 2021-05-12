@@ -45,7 +45,8 @@ defmodule Medirepo.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:pbkdf2_elixir, "~> 1.4"},
-      {:guardian, "~> 2.0"}
+      {:guardian, "~> 2.0"},
+      {:ex_machina, "~> 2.7.0", only: :test}
     ]
   end
 

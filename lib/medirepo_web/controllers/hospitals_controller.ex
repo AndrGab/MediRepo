@@ -8,8 +8,9 @@ defmodule MedirepoWeb.HospitalsController do
   action_fallback FallbackController
 
   def create(conn, params) do
-    with {:ok, %Hospital{} = hospital} <- Medirepo.create_hospital(params),
-         {:ok, token, _claims} <- Guardian.encode_and_sign(hospital, %{}, ttl: {30, :minute}) do
+    with {:ok, %Hospital{id: hospital}} <- Medirepo.create_hospital(params),
+         {:ok, token, _claims} <-
+           Guardian.encode_and_sign(hospital, %{ate: "000"}, ttl: {30, :minute}) do
       conn
       |> put_status(:created)
       |> render("create.json", token: token, hospital: hospital)
@@ -17,9 +18,8 @@ defmodule MedirepoWeb.HospitalsController do
   end
 
   def index(conn, _params) do
-    logged_hospital = Guardian.current_hospital(conn)
-
-    with {:ok, %Hospital{} = hospital} <- Medirepo.get_hospital_by_id(logged_hospital) do
+    with {:ok, logged_hospital} <- Guardian.current_hospital(conn),
+         {:ok, %Hospital{} = hospital} <- Medirepo.get_hospital_by_id(logged_hospital) do
       conn
       |> put_status(:ok)
       |> render("hospital.json", hospital: hospital)
@@ -35,9 +35,8 @@ defmodule MedirepoWeb.HospitalsController do
   end
 
   def delete(conn, _params) do
-    logged_hospital = Guardian.current_hospital(conn)
-
-    with {:ok, %Hospital{}} <- Medirepo.delete_hospital(logged_hospital) do
+    with {:ok, logged_hospital} <- Guardian.current_hospital(conn),
+         {:ok, %Hospital{}} <- Medirepo.delete_hospital(logged_hospital) do
       conn
       |> put_status(:no_content)
       |> text("")
@@ -45,13 +44,14 @@ defmodule MedirepoWeb.HospitalsController do
   end
 
   def update(conn, params) do
-    logged_hospital = Guardian.current_hospital(conn)
-    params = Map.put(params, "id", logged_hospital)
+    with {:ok, logged_hospital} <- Guardian.current_hospital(conn) do
+      params = Map.put(params, "id", logged_hospital)
 
-    with {:ok, %Hospital{} = hospital} <- Medirepo.update_hospital(params) do
-      conn
-      |> put_status(:ok)
-      |> render("hospital.json", hospital: hospital)
+      with {:ok, %Hospital{} = hospital} <- Medirepo.update_hospital(params) do
+        conn
+        |> put_status(:ok)
+        |> render("hospital.json", hospital: hospital)
+      end
     end
   end
 end
