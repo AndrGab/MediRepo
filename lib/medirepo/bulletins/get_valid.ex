@@ -29,7 +29,7 @@ defmodule Medirepo.Bulletins.GetValid do
     handle_result(result)
   end
 
-  defp handle_result([]), do: {:error, Error.build(:not_found, "Bulletin not found")}
+  defp handle_result([]), do: {:error, Error.build_bulletin_not_found_error()}
 
   defp handle_result([result | _tail]), do: {:ok, result}
 end
