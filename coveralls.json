@@ -1,0 +1,11 @@
+{
+    "skip_files": [
+        "test/support/channel_case.ex",
+        "test/support/conn_case.ex",
+        "test/support/data_case.ex",
+        "lib/medirepo_web/views/error_helpers.ex",
+        "lib/medirepo_web.ex",
+        "lib/medirepo/repo.ex",
+        "lib/medirepo_web/channels/user_socket.ex"
+    ]
+}
