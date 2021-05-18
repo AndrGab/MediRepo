@@ -10,7 +10,14 @@ defmodule Medirepo.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -46,6 +53,7 @@ defmodule Medirepo.MixProject do
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:pbkdf2_elixir, "~> 1.4"},
       {:guardian, "~> 2.0"},
+      {:excoveralls, "~> 0.10", only: :test},
       {:ex_machina, "~> 2.7.0", only: :test}
     ]
   end
