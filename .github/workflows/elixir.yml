@@ -42,12 +42,17 @@ jobs:
       run: mix format --check-formatted
 
     - name: Run Credo
-      run: mix credo
+      run: mix credo --strict
 
     - name: Check coverage
       run: mix coveralls.json
-      env:
+      env: 
           MIX_ENV: test
+  
+    - name: Run codecov Script
+      run: bash <(curl -s https://codecov.io/bash)
+      env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Install dependencies
       run: mix deps.get

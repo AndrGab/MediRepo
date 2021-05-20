@@ -16,6 +16,8 @@ defmodule Medirepo.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       alias Medirepo.Repo
@@ -28,10 +30,10 @@ defmodule Medirepo.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Medirepo.Repo)
+    :ok = Sandbox.checkout(Medirepo.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Medirepo.Repo, {:shared, self()})
+      Sandbox.mode(Medirepo.Repo, {:shared, self()})
     end
 
     :ok
