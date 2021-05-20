@@ -1,5 +1,5 @@
 defmodule Medirepo.Bulletins.Get do
-  alias Medirepo.{Error, Repo, Bulletin}
+  alias Medirepo.{Bulletin, Error, Repo}
 
   def by_id(id) do
     case Repo.get(Bulletin, id) do
@@ -8,7 +8,7 @@ defmodule Medirepo.Bulletins.Get do
     end
   end
 
-  def get_all() do
+  def get_all do
     case Repo.all(Bulletin) do
       [] -> {:error, Error.build(:not_found, "Empty database")}
       bulletin -> {:ok, bulletin}

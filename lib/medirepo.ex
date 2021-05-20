@@ -1,12 +1,12 @@
 defmodule Medirepo do
   alias Medirepo.Bulletins.Create, as: BulletinCreate
-  alias Medirepo.Bulletins.Get, as: BulletinGet
   alias Medirepo.Bulletins.Delete, as: BulletinDelete
+  alias Medirepo.Bulletins.Get, as: BulletinGet
   alias Medirepo.Bulletins.Update, as: BulletinUpdate
 
   alias Medirepo.Hospitals.Create, as: HospitalCreate
-  alias Medirepo.Hospitals.Get, as: HospitalGet
   alias Medirepo.Hospitals.Delete, as: HospitalDelete
+  alias Medirepo.Hospitals.Get, as: HospitalGet
   alias Medirepo.Hospitals.Update, as: HospitalUpdate
 
   defdelegate create_bulletin(params), to: BulletinCreate, as: :call

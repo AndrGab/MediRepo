@@ -3,8 +3,8 @@ defmodule Medirepo.BulletinTest do
 
   import Medirepo.Factory
 
-  alias Medirepo.Bulletin
   alias Ecto.Changeset
+  alias Medirepo.Bulletin
 
   describe "changeset/2" do
     test "when all params are valid, returns a valid changeset" do

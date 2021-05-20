@@ -2,7 +2,7 @@ defmodule Medirepo.Hospitals.GetTest do
   use Medirepo.DataCase, async: true
 
   alias Medirepo.{Error, Hospital}
-  alias Medirepo.Hospitals.{Get, Create}
+  alias Medirepo.Hospitals.{Create, Get}
 
   import Medirepo.Factory
 

@@ -2,8 +2,8 @@ defmodule MedirepoWeb.BulletinViewController do
   use MedirepoWeb, :controller
 
   alias Medirepo.Bulletin
-  alias MedirepoWeb.Auth.Guardian
   alias Medirepo.Bulletins.GetValid
+  alias MedirepoWeb.Auth.Guardian
   alias MedirepoWeb.FallbackController
 
   action_fallback FallbackController

@@ -1,5 +1,5 @@
 defmodule Medirepo.Hospitals.Delete do
-  alias Medirepo.{Error, Repo, Hospital}
+  alias Medirepo.{Error, Hospital, Repo}
 
   def call(id) do
     case Repo.get(Hospital, id) do

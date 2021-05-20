@@ -1,9 +1,9 @@
 defmodule MedirepoWeb.Auth.Guardian do
   use Guardian, otp_app: :medirepo
 
-  alias Medirepo.{Hospital, Error}
-  alias Medirepo.Hospitals.Get, as: HospitalGet
   alias Medirepo.Bulletins.GetValid, as: GetValid
+  alias Medirepo.{Error, Hospital}
+  alias Medirepo.Hospitals.Get, as: HospitalGet
 
   def subject_for_token(hospital_id, _claims) do
     {:ok, hospital_id}

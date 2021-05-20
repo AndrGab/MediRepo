@@ -1,7 +1,7 @@
 defmodule Medirepo.Bulletins.UpdateTest do
   use Medirepo.DataCase, async: true
 
-  alias Medirepo.{Error, Bulletin, Hospital}
+  alias Medirepo.{Bulletin, Error, Hospital}
   alias Medirepo.Bulletins.{Create, Update}
   alias Medirepo.Hospitals.Create, as: HospCreate
 

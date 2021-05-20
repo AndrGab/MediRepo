@@ -2,7 +2,7 @@ defmodule Medirepo.Hospitals.DeleteTest do
   use Medirepo.DataCase, async: true
 
   alias Medirepo.{Error, Hospital}
-  alias Medirepo.Hospitals.{Delete, Create}
+  alias Medirepo.Hospitals.{Create, Delete}
 
   import Medirepo.Factory
 

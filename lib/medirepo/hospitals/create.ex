@@ -1,5 +1,5 @@
 defmodule Medirepo.Hospitals.Create do
-  alias Medirepo.{Error, Repo, Hospital}
+  alias Medirepo.{Error, Hospital, Repo}
 
   def call(params) do
     params

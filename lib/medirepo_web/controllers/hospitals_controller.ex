@@ -2,8 +2,8 @@ defmodule MedirepoWeb.HospitalsController do
   use MedirepoWeb, :controller
 
   alias Medirepo.Hospital
-  alias MedirepoWeb.FallbackController
   alias MedirepoWeb.Auth.Guardian
+  alias MedirepoWeb.FallbackController
 
   action_fallback FallbackController
 

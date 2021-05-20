@@ -3,8 +3,8 @@ defmodule Medirepo.HospitalTest do
 
   import Medirepo.Factory
 
-  alias Medirepo.Hospital
   alias Ecto.Changeset
+  alias Medirepo.Hospital
 
   describe "changeset/2" do
     test "when all params are valid, returns a valid changeset" do

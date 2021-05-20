@@ -1,5 +1,5 @@
 defmodule Medirepo.Hospitals.Update do
-  alias Medirepo.{Error, Repo, Hospital}
+  alias Medirepo.{Error, Hospital, Repo}
 
   def call(%{"id" => id} = params) do
     case Repo.get(Hospital, id) do

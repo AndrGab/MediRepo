@@ -1,7 +1,7 @@
 defmodule Medirepo.Bulletins.GetValid do
   import Ecto.Query
 
-  alias Medirepo.{Error, Repo, Bulletin}
+  alias Medirepo.{Bulletin, Error, Repo}
 
   def call(%{
         "login" => vl_login,
