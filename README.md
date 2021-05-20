@@ -1,4 +1,6 @@
 # Daily Medical Report
+[![codecov](https://codecov.io/gh/AndrGab/MediRepo/branch/main/graph/badge.svg?token=9WER8Z15AZ)](https://codecov.io/gh/AndrGab/MediRepo)
+
 
 ## MediRepo
 
@@ -49,11 +51,6 @@ Install my-project with mix
 ## Feedback
 
 If you have any feedback, please reach out to us at andrgab@gmail.com
-
-  
-## Demo
-
-Insert gif or link to demo
 
   
 ## Authors
