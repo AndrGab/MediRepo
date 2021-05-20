@@ -9,6 +9,7 @@ defmodule Medirepo.Repo.Migrations.CreateHospitalsTable do
 
       timestamps()
     end
+
     create unique_index(:hospitals, [:email])
   end
 end

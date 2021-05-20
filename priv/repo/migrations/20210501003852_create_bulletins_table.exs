@@ -20,6 +20,5 @@ defmodule Medirepo.Repo.Migrations.CreateBulletinsTable do
 
       timestamps()
     end
-
   end
 end
