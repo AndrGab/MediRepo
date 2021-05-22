@@ -35,6 +35,35 @@ defmodule Medirepo.Hospitals.GetTest do
     end
   end
 
+  describe "by_email/1" do
+    test "when email is valid, returns the hospital" do
+      params = build(:hospital_params)
+
+      {:ok,
+       %Hospital{
+         email: email
+       }} = Create.call(params)
+
+      response = Get.by_email(%{"email" => email})
+
+      assert {:ok,
+              %Hospital{
+                email: "contato@hospital.com",
+                name: "Hospital das Americas",
+                id: _id,
+                inserted_at: _inserted,
+                updated_at: _updated
+              }} = response
+    end
+
+    test "when an inexistent email is sent, returns an error" do
+      response = Get.by_email(%{"email" => "email@test.com"})
+
+      expected_response = {:error, Error.build_hospital_not_found_error()}
+      assert response == expected_response
+    end
+  end
+
   describe "get_all/0" do
     test "get all hospital from database" do
       params = build(:hospital_params)

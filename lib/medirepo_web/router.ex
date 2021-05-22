@@ -17,10 +17,12 @@ defmodule MedirepoWeb.Router do
 
     get "/", RedirectController, :index
     get "/bulletins", RedirectController, :index
-    get "/list", HospitalsController, :show_list
+    get "/hospitals/list", HospitalsController, :show_list
+    post "/hospitals/reset", HospitalsController, :reset_password
     post "/hospitals", HospitalsController, :create
     post "/hospitals/signin", HospitalsController, :sign_in
-    post "/view/signin", BulletinViewController, :sign_in
+    post "/hospitals/fastlogin", HospitalsController, :fast_login
+    post "/patients/signin", BulletinViewController, :sign_in
   end
 
   scope "/api", MedirepoWeb do
@@ -30,7 +32,7 @@ defmodule MedirepoWeb.Router do
     delete "/hospitals", HospitalsController, :delete
     put "/hospitals", HospitalsController, :update
 
-    get "/view", BulletinViewController, :index
+    get "/patients/view", BulletinViewController, :index
     resources "/bulletins", BulletinsController, except: [:index, :new, :edit]
   end
 

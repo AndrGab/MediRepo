@@ -40,4 +40,30 @@ defmodule Medirepo.Hospitals.UpdateTest do
       assert response == expected_response
     end
   end
+
+  describe "reset_pass/1" do
+    test "when id is correct, generates a token for reseting email" do
+      params = build(:hospital_params)
+
+      {:ok,
+       %Hospital{
+         id: id
+       }} = Create.call(params)
+
+      update_params = %{
+        "id" => id,
+        "password_reset_token" => "Teste",
+        "password_sent_email_at" => NaiveDateTime.utc_now()
+      }
+
+      response = Update.call(update_params)
+
+      assert {:ok,
+              %Hospital{
+                name: "Hospital das Americas",
+                email: "contato@hospital.com",
+                id: _id
+              }} = response
+    end
+  end
 end

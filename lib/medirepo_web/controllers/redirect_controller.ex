@@ -4,6 +4,6 @@ defmodule MedirepoWeb.RedirectController do
   def index(conn, _params) do
     conn
     |> put_status(:ok)
-    |> text("MediRepo API - Use our application to make requests. Thank you!")
+    |> text("MediRepo API")
   end
 end

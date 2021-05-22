@@ -8,6 +8,16 @@ defmodule Medirepo.Hospitals.Update do
     end
   end
 
+  def reset_pass(id) do
+    params = %{
+      "password_reset_token" => SecureRandom.urlsafe_base64(),
+      "password_sent_email_at" => NaiveDateTime.utc_now()
+    }
+
+    Repo.get(Hospital, id)
+    |> do_update(params)
+  end
+
   defp do_update(hospital, params) do
     hospital
     |> Hospital.changeset(params)

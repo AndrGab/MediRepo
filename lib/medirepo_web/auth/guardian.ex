@@ -44,6 +44,25 @@ defmodule MedirepoWeb.Auth.Guardian do
 
   def authenticate(_), do: {:error, Error.build(:bad_request, "Invalid or missing params")}
 
+  defp valid_reset_token?(token_sent_at) do
+    current_time = NaiveDateTime.utc_now()
+    Time.diff(current_time, token_sent_at) < 600
+  end
+
+  def with_reset_token(%{"id" => hospital_id, "reset_token" => _passed_token} = params) do
+    with {:ok, %Hospital{password_sent_email_at: saved_dt_token}} <-
+           HospitalGet.by_id_and_reset_token(params),
+         true <- valid_reset_token?(saved_dt_token),
+         {:ok, token, _claims} <- encode_and_sign(hospital_id, %{ate: "000"}, ttl: {30, :minute}) do
+      {:ok, token}
+    else
+      false -> {:error, Error.build(:unauthorized, "Request a new reset token")}
+      error -> error
+    end
+  end
+
+  def with_reset_token(_), do: {:error, Error.build(:bad_request, "Invalid or missing params")}
+
   def auth_view(
         %{
           "login" => cd_paciente,

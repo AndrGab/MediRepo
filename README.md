@@ -1,19 +1,20 @@
-# Daily Medical Report
-[![codecov](https://codecov.io/gh/AndrGab/MediRepo/branch/main/graph/badge.svg?token=9WER8Z15AZ)](https://codecov.io/gh/AndrGab/MediRepo)
+# Medirepo - Daily Medical Report API
+[![codecov](https://codecov.io/gh/AndrGab/MediRepo/branch/main/graph/badge.svg?token=9WER8Z15AZ)](https://codecov.io/gh/AndrGab/MediRepo) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 
 
 ## MediRepo
 
-Most hospitals are restricting visitors for
-COVID-19 Patients.
-This is a personal project to help hospitals sharing
-Daily Medical Reports with these patients' families.
+Most hospitals are restricting visitors for COVID-19 Patients.
+This is a personal project to help hospitals sharing Daily Medical Reports with those patients' families.
 
   
 ## Tech Stack
+:construction: This project is under development :construction:
 
-**Server:** Elixir, Phoenix
 
+- Elixir
+- Phoenix
   
 ## Screenshots
 
@@ -55,6 +56,6 @@ If you have any feedback, please reach out to us at andrgab@gmail.com
   
 ## Authors
 
-- [@andrgab](https://www.github.com/andrgab)
+Made with :purple_heart: by [@andrgab](https://www.github.com/andrgab)
 
   

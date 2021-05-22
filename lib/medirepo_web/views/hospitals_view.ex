@@ -25,4 +25,15 @@ defmodule MedirepoWeb.HospitalsView do
     do: %{hospital: hospital}
 
   def render("sign_in.json", %{token: token}), do: %{token: token}
+
+  def render("reset.json", %{
+        hospital: %Hospital{email: email, id: id, password_reset_token: token}
+      }) do
+    %{
+      message: "A reset token was sent by email",
+      email: email,
+      id: id,
+      password_reset_token: token
+    }
+  end
 end
