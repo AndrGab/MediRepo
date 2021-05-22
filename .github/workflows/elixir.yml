@@ -78,4 +78,4 @@ jobs:
           GIGALIXIR_PASSWORD: ${{ secrets.GIGALIXIR_PASSWORD }}
           GIGALIXIR_APP: elderly-joyous-pangolin # Feel free to also put this in your secrets
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          MIGRATIONS: false  # defaults to true
+          MIGRATIONS: true  # defaults to true
