@@ -45,7 +45,7 @@ defmodule Medirepo.Hospitals.GetTest do
       assert {:ok,
               [
                 %Hospital{
-                  email: "contato@hospital.com",
+                  email: nil,
                   name: "Hospital das Americas",
                   id: _id,
                   inserted_at: _inserted,

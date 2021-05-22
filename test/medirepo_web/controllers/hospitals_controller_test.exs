@@ -98,4 +98,30 @@ defmodule MedirepoWeb.HospitalsControllerTest do
              }
     end
   end
+
+  describe "show_list/2" do
+    setup %{conn: conn} do
+      insert(:hospital)
+      {:ok, conn: conn}
+    end
+
+    test "list all hospitals", %{
+      conn: conn
+    } do
+      response =
+        conn
+        |> get(Routes.hospitals_path(conn, :show_list))
+        |> json_response(:ok)
+
+      assert response == %{
+               "hospital" => [
+                 %{
+                   "email" => nil,
+                   "id" => "910a2168-b747-4c35-9c5e-74912c89213f",
+                   "name" => "Hospital das Americas"
+                 }
+               ]
+             }
+    end
+  end
 end

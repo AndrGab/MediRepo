@@ -17,6 +17,7 @@ defmodule MedirepoWeb.Router do
 
     get "/", RedirectController, :index
     get "/bulletins", RedirectController, :index
+    get "/list", HospitalsController, :show_list
     post "/hospitals", HospitalsController, :create
     post "/hospitals/signin", HospitalsController, :sign_in
     post "/view/signin", BulletinViewController, :sign_in

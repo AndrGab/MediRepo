@@ -34,6 +34,14 @@ defmodule MedirepoWeb.HospitalsController do
     end
   end
 
+  def show_list(conn, _params) do
+    with {:ok, hospital} <- Medirepo.get_hospitals() do
+      conn
+      |> put_status(:ok)
+      |> render("hospital.json", hospital: hospital)
+    end
+  end
+
   def delete(conn, _params) do
     with {:ok, logged_hospital} <- Guardian.current_hospital(conn),
          {:ok, %Hospital{}} <- Medirepo.delete_hospital(logged_hospital) do

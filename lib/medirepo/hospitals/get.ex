@@ -1,4 +1,6 @@
 defmodule Medirepo.Hospitals.Get do
+  import Ecto.Query
+
   alias Medirepo.{Error, Hospital, Repo}
 
   def by_id(id) do
@@ -9,7 +11,12 @@ defmodule Medirepo.Hospitals.Get do
   end
 
   def get_all do
-    case Repo.all(Hospital) do
+    query =
+      from(hospital in Hospital,
+        select: [:id, :name]
+      )
+
+    case Repo.all(query) do
       [] -> {:error, Error.build(:not_found, "Empty database")}
       hospital -> {:ok, hospital}
     end
