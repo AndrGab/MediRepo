@@ -1,5 +1,5 @@
 # Medirepo - Daily Medical Report API
-[![codecov](https://codecov.io/gh/AndrGab/MediRepo/branch/main/graph/badge.svg?token=9WER8Z15AZ)](https://codecov.io/gh/AndrGab/MediRepo) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![codecov](https://codecov.io/gh/AndrGab/MediRepo/branch/main/graph/badge.svg?token=9WER8Z15AZ)](https://codecov.io/gh/AndrGab/MediRepo) [![Elixir CI](https://github.com/AndrGab/MediRepo/actions/workflows/elixir.yml/badge.svg?branch=main)](https://github.com/AndrGab/MediRepo/actions/workflows/elixir.yml) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 
 
