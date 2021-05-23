@@ -5,7 +5,9 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+env:
+  MIX_ENV: test
+  
 jobs:
   build:
 
@@ -29,7 +31,7 @@ jobs:
     - name: Set up Elixir
       uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
       with:
-        elixir-version: '1.12' # Define the elixir version [required]
+        elixir-version: '1.12.0' # Define the elixir version [required]
         otp-version: '23.0' # Define the OTP version [required]
     - name: Restore dependencies cache
       uses: actions/cache@v2
@@ -40,6 +42,9 @@ jobs:
 
     - name: Check Formatting
       run: mix format --check-formatted
+
+    - name: Run Credo
+      run: mix credo --strict
 
     - name: Check coverage
       run: mix coveralls.json
@@ -73,6 +78,6 @@ jobs:
         with:
           GIGALIXIR_USERNAME: ${{ secrets.GIGALIXIR_USERNAME }}
           GIGALIXIR_PASSWORD: ${{ secrets.GIGALIXIR_PASSWORD }}
-          GIGALIXIR_APP: elderly-joyous-pangolin # Feel free to also put this in your secrets
+          GIGALIXIR_APP: elderl9y-joyous-pangolin # Feel free to also put this in your secrets
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           MIGRATIONS: true  # defaults to true
