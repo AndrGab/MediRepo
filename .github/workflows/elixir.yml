@@ -40,7 +40,7 @@ jobs:
 
     - name: Install dependencies
       run: mix deps.get
-      
+
     - name: Check Formatting
       run: mix format --check-formatted
 
@@ -79,6 +79,6 @@ jobs:
         with:
           GIGALIXIR_USERNAME: ${{ secrets.GIGALIXIR_USERNAME }}
           GIGALIXIR_PASSWORD: ${{ secrets.GIGALIXIR_PASSWORD }}
-          GIGALIXIR_APP: elderl9y-joyous-pangolin # Feel free to also put this in your secrets
+          GIGALIXIR_APP: elderly-joyous-pangolin # Feel free to also put this in your secrets
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           MIGRATIONS: true  # defaults to true
