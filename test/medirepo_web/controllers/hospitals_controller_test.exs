@@ -69,6 +69,30 @@ defmodule MedirepoWeb.HospitalsControllerTest do
     end
   end
 
+  describe "index/2" do
+    setup %{conn: conn} do
+      hospital = insert(:hospital)
+      %Hospital{id: id} = hospital
+      {:ok, token, _claims} = Guardian.encode_and_sign(id, %{ate: "000"})
+      conn = put_req_header(conn, "authorization", "Bearer #{token}")
+      {:ok, conn: conn, id: id}
+    end
+
+    test "Shows the logged hospital", %{conn: conn, id: id} do
+      response =
+        conn
+        |> get(Routes.hospitals_path(conn, :index))
+        |> json_response(:ok)
+
+      assert response == %{
+               "hospital" => %{
+                 "id" => id,
+                 "name" => "Hospital das Americas"
+               }
+             }
+    end
+  end
+
   describe "update/2" do
     setup %{conn: conn} do
       hospital = insert(:hospital)
@@ -91,7 +115,6 @@ defmodule MedirepoWeb.HospitalsControllerTest do
 
       assert response == %{
                "hospital" => %{
-                 "email" => "contato@hospital.com",
                  "id" => "910a2168-b747-4c35-9c5e-74912c89213f",
                  "name" => "Teste"
                }
@@ -116,7 +139,6 @@ defmodule MedirepoWeb.HospitalsControllerTest do
       assert response == %{
                "hospital" => [
                  %{
-                   "email" => nil,
                    "id" => "910a2168-b747-4c35-9c5e-74912c89213f",
                    "name" => "Hospital das Americas"
                  }

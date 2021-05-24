@@ -42,5 +42,27 @@ defmodule Medirepo.Bulletins.GetValidTest do
                 nome: "Andre"
               }} = response
     end
+
+    test "when id is invalid, returns an error", %{hosp_id: hosp_id} do
+      params = build(:bulletin_params, %{"hospital_id" => hosp_id})
+
+      {:ok,
+       %Bulletin{
+         dt_nascimento: dt_nasc,
+         atendimento: atend,
+         cd_paciente: _cd_pac
+       }} = Create.call(params)
+
+      response =
+        GetValid.call(%{
+          "login" => 9999,
+          "password" => atend,
+          "dt_nasc" => dt_nasc,
+          "id" => hosp_id
+        })
+
+      assert {:error, %Medirepo.Error{result: "Bulletin not found", status: :not_found}} =
+               response
+    end
   end
 end

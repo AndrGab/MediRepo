@@ -51,6 +51,20 @@ defmodule Medirepo.Bulletins.UpdateTest do
               }} = response
     end
 
+    test "when there are invalid params, returns an error", %{id: id} do
+      update_params = %{"id" => id, "nome" => "A", "obs" => "P"}
+
+      response = Update.call(update_params)
+
+      expected_response = %{
+        nome: ["should be at least 2 character(s)"],
+        obs: ["should be at least 6 character(s)"]
+      }
+
+      assert {:error, %Error{status: :bad_request, result: changeset}} = response
+      assert errors_on(changeset) == expected_response
+    end
+
     test "when an inexistent id is sent, returns an error" do
       response =
         Update.call(%{

@@ -6,6 +6,7 @@
         "lib/medirepo_web/views/error_helpers.ex",
         "lib/medirepo_web.ex",
         "lib/medirepo/repo.ex",
-        "lib/medirepo_web/channels/user_socket.ex"
+        "lib/medirepo_web/channels/user_socket.ex",
+        "lib/medirepo/application.ex"
     ]
 }

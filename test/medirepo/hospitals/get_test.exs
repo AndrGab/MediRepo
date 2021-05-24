@@ -62,6 +62,13 @@ defmodule Medirepo.Hospitals.GetTest do
       expected_response = {:error, Error.build_hospital_not_found_error()}
       assert response == expected_response
     end
+
+    test "when params are invalid, returns an error" do
+      response = Get.by_email(%{"teste" => "email@test.com"})
+
+      expected_response = {:error, %Error{result: "Invalid Params", status: :bad_request}}
+      assert response == expected_response
+    end
   end
 
   describe "get_all/0" do

@@ -2,6 +2,7 @@ defmodule Medirepo.Hospitals.DeleteTest do
   use Medirepo.DataCase, async: true
 
   alias Medirepo.{Error, Hospital}
+  alias Medirepo.Bulletins.Create, as: CreateBulletin
   alias Medirepo.Hospitals.{Create, Delete}
 
   import Medirepo.Factory
@@ -32,6 +33,26 @@ defmodule Medirepo.Hospitals.DeleteTest do
 
       expected_response = {:error, Error.build_hospital_not_found_error()}
       assert response == expected_response
+    end
+
+    test "when there are bulletins associated to the hospital, returns an error" do
+      params = build(:hospital_params)
+
+      {:ok,
+       %Hospital{
+         id: id
+       }} = Create.call(params)
+
+      bul_params = build(:bulletin_params, %{"hospital_id" => id})
+
+      CreateBulletin.call(bul_params)
+
+      response = Delete.call(id)
+
+      expected_response = %{bulletin: ["are still associated with this entry"]}
+
+      assert {:error, %Error{status: :bad_request, result: changeset}} = response
+      assert errors_on(changeset) == expected_response
     end
   end
 end

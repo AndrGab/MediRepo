@@ -12,7 +12,7 @@ defmodule Medirepo.Hospital do
   @update_params [:email, :password, :name, :password_reset_token, :password_sent_email_at]
   @required_update [:email]
 
-  @derive {Jason.Encoder, only: [:id, :name, :email]}
+  @derive {Jason.Encoder, only: [:id, :name]}
 
   schema "hospitals" do
     field :name, :string

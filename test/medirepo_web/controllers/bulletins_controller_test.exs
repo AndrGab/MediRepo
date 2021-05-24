@@ -140,4 +140,74 @@ defmodule MedirepoWeb.BulletinsControllerTest do
              }
     end
   end
+
+  describe "show/2" do
+    setup %{conn: conn} do
+      hospital = insert(:hospital)
+      %Hospital{id: id} = hospital
+      {:ok, token, _claims} = Guardian.encode_and_sign(id, %{ate: "000"})
+      conn = put_req_header(conn, "authorization", "Bearer #{token}")
+      bulletin = insert(:bulletin, hospital_id: id)
+      %Bulletin{id: bul_id} = bulletin
+      {:ok, conn: conn, id: bul_id}
+    end
+
+    test "when there is a hospital with the given id, shows the hospital", %{
+      conn: conn,
+      id: id
+    } do
+      params = %Bulletin{id: id}
+
+      response =
+        conn
+        |> get(Routes.bulletins_path(conn, :show, params))
+        |> json_response(:ok)
+
+      assert response == %{
+               "bulletin" => %{
+                 "atendimento" => 99_999,
+                 "cd_paciente" => 88_888,
+                 "consciencia" => "CONSCIENTE",
+                 "diurese" => "NORMAL",
+                 "dt_assinatura" => "2020-04-29",
+                 "dt_nascimento" => "1977-01-28",
+                 "febre" => "Ausente",
+                 "geral" => "ESTAVEL",
+                 "hospital_id" => "910a2168-b747-4c35-9c5e-74912c89213f",
+                 "id" => "caf4c454-3b3e-4426-b754-80eb69a68cee",
+                 "medico" => "ANTONIO CARLOS PETRUS",
+                 "nome" => "Andre",
+                 "obs" => "PACIENTE ESTA REAGINDO BEM",
+                 "pressao" => "NORMAL",
+                 "respiracao" => "NORMAL"
+               }
+             }
+    end
+
+    test "when bulletin's id is invalid, returns an error", %{
+      conn: conn
+    } do
+      params = %Bulletin{id: "910a2168-b747-4c35-9c5e-74912c89213f"}
+
+      response =
+        conn
+        |> get(Routes.bulletins_path(conn, :show, params))
+        |> json_response(:not_found)
+
+      assert response == %{"message" => "Bulletin not found"}
+    end
+
+    test "when bulletin's uuid is invalid, returns an error", %{
+      conn: conn
+    } do
+      params = %Bulletin{id: "910a2168-b747-4c35"}
+
+      response =
+        conn
+        |> get(Routes.bulletins_path(conn, :show, params))
+        |> json_response(:bad_request)
+
+      assert response == %{"message" => "Invalid UUID"}
+    end
+  end
 end
