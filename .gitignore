@@ -26,6 +26,7 @@ erl_crash.dump
 .gitignore
 
 config/prod.secret.exs
+config/.env
 
 # Ignore package tarball (built via "mix hex.build").
 medirepo-*.tar

@@ -27,7 +27,7 @@ defmodule Medirepo.MixProject do
   def application do
     [
       mod: {Medirepo.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :bamboo, :bamboo_smtp]
     ]
   end
 
@@ -54,6 +54,8 @@ defmodule Medirepo.MixProject do
       {:pbkdf2_elixir, "~> 1.4"},
       {:guardian, "~> 2.0"},
       {:secure_random, "~> 0.5"},
+      {:bamboo, "~> 2.1.0"},
+      {:bamboo_smtp, "~> 4.0.1"},
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_machina, "~> 2.7.0", only: :test}
     ]

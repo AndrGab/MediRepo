@@ -22,6 +22,24 @@ config :medirepo, MedirepoWeb.Auth.Pipeline,
   module: MedirepoWeb.Auth.Guardian,
   error_handler: MedirepoWeb.Auth.ErrorHandler
 
+config :medirepo, Medirepo.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "smtp.mailtrap.io",
+  hostname: "smtp.mailtrap.io",
+  port: 2525,
+  username: System.get_env("SMTP_USERNAME"),
+  password: System.get_env("SMTP_PASSWORD"),
+  # can be `:always` or `:never`
+  tls: :never,
+  # or {:system, "ALLOWED_TLS_VERSIONS"} w/ comma seprated values (e.g. "tlsv1.1,tlsv1.2")
+  allowed_tls_versions: ["tlsv1", "tlsv1.1", "tlsv1.2"],
+  # can be `true`
+  ssl: false,
+  retries: 1,
+  # can be `true`
+  no_mx_lookups: false,
+  auth: :if_available
+
 # Configures the endpoint
 config :medirepo, MedirepoWeb.Endpoint,
   url: [host: "localhost"],

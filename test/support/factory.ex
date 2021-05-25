@@ -7,7 +7,8 @@ defmodule Medirepo.Factory do
     %{
       "name" => "Hospital das Americas",
       "email" => "contato@hospital.com",
-      "password" => "123456"
+      "password" => "123456",
+      "password_reset_token" => "abcdef"
     }
   end
 
