@@ -66,6 +66,9 @@ jobs:
       
     - name: Run tests
       run: mix test
+    
+    - name: Run digest
+      run: mix phx.digest
 
   deploy:
     needs: build # Will only run if the test job succeeds
