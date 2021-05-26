@@ -3,6 +3,11 @@ defmodule Medirepo.Email do
 
   alias Medirepo.Mailer
 
+  def send_welcome_email(name, email, id) do
+    welcome_email(name, email, id)
+    |> Mailer.deliver_later()
+  end
+
   defp welcome_email(name, email, id) do
     new_email(
       to: email,
@@ -13,6 +18,11 @@ defmodule Medirepo.Email do
     )
   end
 
+  def send_reset_password_email(email, id, token) do
+    reset_email(email, id, token)
+    |> Mailer.deliver_later()
+  end
+
   defp reset_email(email, id, token) do
     new_email(
       to: email,
@@ -21,15 +31,5 @@ defmodule Medirepo.Email do
       text_body:
         "Your ID is #{id}\nand your reset_token is #{token}.\nYou have 10 minutes to login."
     )
-  end
-
-  def send_welcome_email(name, email, id) do
-    welcome_email(name, email, id)
-    |> Mailer.deliver_later()
-  end
-
-  def send_reset_password_email(email, id, token) do
-    reset_email(email, id, token)
-    |> Mailer.deliver_later()
   end
 end

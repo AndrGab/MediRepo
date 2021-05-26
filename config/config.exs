@@ -29,14 +29,10 @@ config :medirepo, Medirepo.Mailer,
   port: 2525,
   username: Application.get_env(:medirepo, :smtp_username) || System.get_env("SMTP_USERNAME"),
   password: Application.get_env(:medirepo, :smtp_password) || System.get_env("SMTP_PASSWORD"),
-  # can be `:always` or `:never`
   tls: :never,
-  # or {:system, "ALLOWED_TLS_VERSIONS"} w/ comma seprated values (e.g. "tlsv1.1,tlsv1.2")
   allowed_tls_versions: ["tlsv1", "tlsv1.1", "tlsv1.2"],
-  # can be `true`
   ssl: false,
   retries: 1,
-  # can be `true`
   no_mx_lookups: false,
   auth: :if_available
 
