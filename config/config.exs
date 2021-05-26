@@ -27,8 +27,8 @@ config :medirepo, Medirepo.Mailer,
   server: "smtp.mailtrap.io",
   hostname: "smtp.mailtrap.io",
   port: 2525,
-  username: System.get_env("SMTP_USERNAME"),
-  password: System.get_env("SMTP_PASSWORD"),
+  username: Application.get_env(:medirepo, :smtp_username),
+  password: Application.get_env(:medirepo, :smtp_password),
   # can be `:always` or `:never`
   tls: :never,
   # or {:system, "ALLOWED_TLS_VERSIONS"} w/ comma seprated values (e.g. "tlsv1.1,tlsv1.2")
