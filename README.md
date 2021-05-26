@@ -50,8 +50,7 @@ Technologies used to write this API:
   
 ## Screenshots
 
-![image](https://user-images.githubusercontent.com/57791712/118586539-54fd3580-b771-11eb-8f55-1ea2f0c2ee35.png)
-
+![bulletin2](https://user-images.githubusercontent.com/57791712/119598328-1f7fca00-bdb9-11eb-87a9-7b4ee4c35ee0.gif)
   
 ## Lessons Learned
 
