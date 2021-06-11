@@ -14,6 +14,9 @@ config :medirepo, Medirepo.Repo,
   migration_primary_key: [type: :binary_id],
   migration_foreign_key: [type: :binary_id]
 
+config :cors_plug,
+  send_preflight_response?: true
+
 config :medirepo, MedirepoWeb.Auth.Guardian,
   issuer: "medirepo",
   secret_key: "yRVGMXDyZkdOn8fbeKtg6+F7v3Lc7s5AwQXlWBCDo7pT4iY7Z3TcuACUeGO3M/ZO"

@@ -24,6 +24,7 @@ defmodule MedirepoWeb.Router do
     post "/hospitals/signin", HospitalsController, :sign_in
     post "/hospitals/fastlogin", HospitalsController, :fast_login
     post "/patients/signin", BulletinViewController, :sign_in
+    options "/patients/signin", BulletinViewController, :options
   end
 
   scope "/api", MedirepoWeb do
@@ -33,6 +34,7 @@ defmodule MedirepoWeb.Router do
     delete "/hospitals", HospitalsController, :delete
     put "/hospitals", HospitalsController, :update
     get "/patients/view", BulletinViewController, :index
+    options "/patients/view", BulletinViewController, :options
     resources "/bulletins", BulletinsController, except: [:index, :new, :edit]
   end
 

@@ -49,5 +49,5 @@ defmodule MedirepoWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug MedirepoWeb.Router
-  plug CORSPlug
+  plug CORSPlug, origin: ["*"]
 end
