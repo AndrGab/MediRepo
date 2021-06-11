@@ -31,8 +31,9 @@ defmodule MedirepoWeb.Auth.Guardian do
   defp handle_hospital({:error, _result}),
     do: {:error, Error.build(:unauthorized, "Access allowed just for Hospitals")}
 
-  def authenticate(%{"id" => hospital_id, "password" => password}) do
-    with {:ok, %Hospital{password_hash: hash}} <- HospitalGet.by_id(hospital_id),
+  def authenticate(%{"email" => email, "password" => password}) do
+    with {:ok, %Hospital{password_hash: hash, id: hospital_id}} <-
+           HospitalGet.by_email(%{"email" => email}),
          true <- Pbkdf2.verify_pass(password, hash),
          {:ok, token, _claims} <- encode_and_sign(hospital_id, %{ate: "000"}, ttl: {30, :minute}) do
       {:ok, token}

@@ -4,6 +4,7 @@ defmodule MedirepoWeb.Router do
   alias MedirepoWeb.Plugs.UUIDChecker
 
   pipeline :api do
+    plug CORSPlug
     plug :accepts, ["json"]
     plug UUIDChecker
   end
@@ -31,7 +32,6 @@ defmodule MedirepoWeb.Router do
     get "/hospitals", HospitalsController, :index
     delete "/hospitals", HospitalsController, :delete
     put "/hospitals", HospitalsController, :update
-
     get "/patients/view", BulletinViewController, :index
     resources "/bulletins", BulletinsController, except: [:index, :new, :edit]
   end

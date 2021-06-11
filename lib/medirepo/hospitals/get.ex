@@ -20,7 +20,7 @@ defmodule Medirepo.Hospitals.Get do
     handle_result(result)
   end
 
-  def by_email(_), do: {:error, Error.build(:bad_request, "Invalid Params")}
+  def by_email(_), do: {:error, Error.build(:bad_request, "Invalid 3 Params")}
 
   def by_id_and_reset_token(%{"id" => id, "reset_token" => token}) do
     query =
