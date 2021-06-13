@@ -4,7 +4,10 @@ defmodule MedirepoWeb.Router do
   alias MedirepoWeb.Plugs.UUIDChecker
 
   pipeline :api do
-    plug CORSPlug
+    plug CORSPlug,
+      origin: ["*"],
+      allow_credentials: true
+
     plug :accepts, ["json"]
     plug UUIDChecker
   end
