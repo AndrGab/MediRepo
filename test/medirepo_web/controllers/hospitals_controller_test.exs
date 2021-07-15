@@ -87,7 +87,8 @@ defmodule MedirepoWeb.HospitalsControllerTest do
       assert response == %{
                "hospital" => %{
                  "id" => id,
-                 "name" => "Hospital das Americas"
+                 "name" => "Hospital das Americas",
+                 "email" => "contato@hospital.com"
                }
              }
     end
@@ -116,7 +117,8 @@ defmodule MedirepoWeb.HospitalsControllerTest do
       assert response == %{
                "hospital" => %{
                  "id" => "910a2168-b747-4c35-9c5e-74912c89213f",
-                 "name" => "Teste"
+                 "name" => "Teste",
+                 "email" => "contato@hospital.com"
                }
              }
     end
@@ -140,7 +142,8 @@ defmodule MedirepoWeb.HospitalsControllerTest do
                "hospital" => [
                  %{
                    "id" => "910a2168-b747-4c35-9c5e-74912c89213f",
-                   "name" => "Hospital das Americas"
+                   "name" => "Hospital das Americas",
+                    "email" => nil
                  }
                ]
              }
