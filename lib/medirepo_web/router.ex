@@ -5,7 +5,7 @@ defmodule MedirepoWeb.Router do
 
   pipeline :api do
     plug CORSPlug,
-      origin: ["*"],
+      origin: "*",
       allow_credentials: true
 
     plug :accepts, ["json"]
