@@ -143,7 +143,7 @@ defmodule MedirepoWeb.HospitalsControllerTest do
                  %{
                    "id" => "910a2168-b747-4c35-9c5e-74912c89213f",
                    "name" => "Hospital das Americas",
-                    "email" => nil
+                   "email" => nil
                  }
                ]
              }
