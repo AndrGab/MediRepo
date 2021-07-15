@@ -29,7 +29,7 @@ defmodule Medirepo.Email do
       from: "contact@medirepo.com",
       subject: "Reset password token",
       text_body:
-        "Your ID is #{id}\nand your reset_token is #{token}.\nYou have 10 minutes to login."
+        "Your ID is #{id}\nand your reset_token is #{token}.\nhttp://localhost:3000/hospitals/fastlogin/#{id}/#{token} \nYou have 10 minutes to login."
     )
   end
 end
