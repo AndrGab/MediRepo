@@ -45,4 +45,13 @@ defmodule MedirepoWeb.BulletinsController do
       |> render("bulletin.json", bulletin: bulletin)
     end
   end
+
+  def show_list(conn, _params) do
+    with {:ok, logged_hospital} <- Guardian.current_hospital(conn),
+         {:ok, bulletin} <- Medirepo.get_all_bulletins(logged_hospital) do
+      conn
+      |> put_status(:ok)
+      |> render("bulletin.json", bulletin: bulletin)
+    end
+  end
 end

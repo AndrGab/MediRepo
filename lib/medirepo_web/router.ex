@@ -38,6 +38,7 @@ defmodule MedirepoWeb.Router do
     put "/hospitals", HospitalsController, :update
     get "/patients/view", BulletinViewController, :index
     options "/patients/view", BulletinViewController, :options
+    get "/bulletins/list", BulletinsController, :show_list
     resources "/bulletins", BulletinsController, except: [:index, :new, :edit]
   end
 

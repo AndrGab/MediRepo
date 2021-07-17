@@ -12,6 +12,7 @@ defmodule Medirepo do
   defdelegate create_bulletin(params), to: BulletinCreate, as: :call
   defdelegate get_bulletin_by_id(id), to: BulletinGet, as: :by_id
   defdelegate get_bulletins, to: BulletinGet, as: :get_all
+  defdelegate get_all_bulletins(id), to: BulletinGet, as: :list_all_by
   defdelegate delete_bulletin(id), to: BulletinDelete, as: :call
   defdelegate update_bulletin(params), to: BulletinUpdate, as: :call
 
