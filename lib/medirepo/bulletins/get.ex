@@ -27,7 +27,7 @@ defmodule Medirepo.Bulletins.Get do
     handle_result(result)
   end
 
-  def list_all_by(), do: {:error, Error.build(:bad_request, "Invalid Params")}
+  def list_all_by, do: {:error, Error.build(:bad_request, "Invalid Params")}
 
   defp handle_result([]), do: {:error, Error.build(:not_found, "Hospital ID not found")}
 
