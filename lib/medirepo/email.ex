@@ -12,9 +12,9 @@ defmodule Medirepo.Email do
     new_email(
       to: email,
       from: "contact@medirepo.com",
-      subject: "Welcome to the MediRepo",
+      subject: "Bem-vindo ao MediRepo",
       text_body:
-        "Hi, #{name}\nThanks for joining us!\nYour ID is #{id}.\nUse your ID and password to login."
+        "Olá, #{name}\nObrigado por se juntar a nós!\nUse seu e-mail e senha cadastrados para logar na plataforma.\nhttps://medirepo.vercel.app/"
     )
   end
 
@@ -29,7 +29,7 @@ defmodule Medirepo.Email do
       from: "contact@medirepo.com",
       subject: "Reset password token",
       text_body:
-        "Your ID is #{id}\nand your reset_token is #{token}.\nhttp://localhost:3000/hospitals/fastlogin/#{id}/#{token} \nYou have 10 minutes to login."
+        "Utilize o link abaixo para logar na plataforma e atualize sua senha:\nhttps://medirepo.vercel.app/hospitals/fastlogin/#{id}/#{token} \nEsse link de acesso expira em 10 minutos.\nObrigado"
     )
   end
 end
