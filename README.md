@@ -29,7 +29,7 @@
 
 # Medirepo - Daily Medical Report API
 
-[![postman](https://img.shields.io/badge/documentation%20in-postman-orange?logo=postman)](https://documenter.getpostman.com/view/15643514/TzXwFJdM)
+[![postman](https://img.shields.io/badge/documentation%20in-postman-orange?logo=postman)](https://documenter.getpostman.com/view/15643514/TzzBpFsL)
 
 ## MediRepo
 
