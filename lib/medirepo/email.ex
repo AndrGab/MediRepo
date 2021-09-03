@@ -8,7 +8,7 @@ defmodule Medirepo.Email do
     |> Mailer.deliver_later()
   end
 
-  defp welcome_email(name, email, id) do
+  defp welcome_email(name, email, _id) do
     new_email(
       to: email,
       from: "contact@medirepo.com",

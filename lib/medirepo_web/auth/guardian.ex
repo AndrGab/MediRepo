@@ -47,7 +47,7 @@ defmodule MedirepoWeb.Auth.Guardian do
 
   defp valid_reset_token?(token_sent_at) do
     current_time = NaiveDateTime.utc_now()
-    Time.diff(current_time, token_sent_at) < 600
+    Time.diff(token_sent_at, current_time) < 600
   end
 
   def with_reset_token(%{"id" => hospital_id, "reset_token" => _passed_token} = params) do
