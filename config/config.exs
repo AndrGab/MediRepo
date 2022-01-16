@@ -7,19 +7,6 @@
 # General application configuration
 use Mix.Config
 
-## INICIO ## INCLUSAO PARAMETROS ZENVIA ####
-config :neopag, :zenvia,
-  url: "https://api-rest.zenvia.com/services/send-sms",
-  ## Converter para Base64 a string "conta:senha"
-  auth: "conta:senha",
-  from: "Remetente",
-  callbackOption: "NONE",
-  flashSms: false,
-  content_type: "application/json",
-  accept: "application/json"
-
-## FINAL ## INCLUSAO PARAMETROS ZENVIA ####
-
 config :medirepo,
   ecto_repos: [Medirepo.Repo]
 
