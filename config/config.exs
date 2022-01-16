@@ -7,6 +7,17 @@
 # General application configuration
 use Mix.Config
 
+## INICIO ## INCLUSAO PARAMETROS ZENVIA ####
+config :neopag, :zenvia,
+url: "https://api-rest.zenvia.com/services/send-sms",
+auth: "conta:senha", ## Converter para Base64 a string "conta:senha"
+from: "Remetente",
+callbackOption: "NONE",
+flashSms: false,
+content_type: "application/json",
+accept: "application/json"
+## FINAL ## INCLUSAO PARAMETROS ZENVIA ####
+
 config :medirepo,
   ecto_repos: [Medirepo.Repo]
 
@@ -29,9 +40,9 @@ config :medirepo, Medirepo.Mailer,
   adapter: Bamboo.SMTPAdapter,
   # server: "smtp.mailtrap.io",
   # hostname: "smtp.mailtrap.io",
-  server: "smtp.gmail.com",
-  hostname: "smtp.gmail.com",
-  port: 465,
+  server: "smtp-relay.sendinblue.com",
+  hostname: "smtp-relay.sendinblue.com",
+  port: 587,
   username: Application.get_env(:medirepo, :smtp_username) || System.get_env("SMTP_USERNAME"),
   password: Application.get_env(:medirepo, :smtp_password) || System.get_env("SMTP_PASSWORD"),
   tls: :never,
