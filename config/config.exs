@@ -29,17 +29,17 @@ config :medirepo, Medirepo.Mailer,
   adapter: Bamboo.SMTPAdapter,
   # server: "smtp.mailtrap.io",
   # hostname: "smtp.mailtrap.io",
-  server: "smtp.gmail.com",
-  hostname: "smtp.gmail.com",
-  port: 465,
+  server: "smtp.umbler.com",
+  hostname: "smtp.umbler.com",
+  port: 587,
   username: Application.get_env(:medirepo, :smtp_username) || System.get_env("SMTP_USERNAME"),
   password: Application.get_env(:medirepo, :smtp_password) || System.get_env("SMTP_PASSWORD"),
   tls: :never,
   allowed_tls_versions: ["tlsv1", "tlsv1.1", "tlsv1.2"],
-  ssl: true,
+  ssl: false,
   retries: 1,
   no_mx_lookups: false,
-  auth: :if_necessary
+  auth: :always
 
 # Configures the endpoint
 config :medirepo, MedirepoWeb.Endpoint,
