@@ -8,7 +8,7 @@ defmodule MedirepoWeb.RedirectControllerTest do
         |> get(Routes.redirect_path(conn, :index))
         |> text_response(:ok)
 
-      expected_response = "https://github.com/AndrGab/MediRepo"
+      expected_response = ""
       assert expected_response == response
     end
   end
