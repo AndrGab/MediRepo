@@ -32,14 +32,14 @@ config :medirepo, Medirepo.Mailer,
   server: "smtp.gmail.com",
   hostname: "smtp.gmail.com",
   port: 465,
-  username: Application.get_env(:medirepo, :smtp_username) || System.get_env("SMTP_USERNAME"),
-  password: Application.get_env(:medirepo, :smtp_password) || System.get_env("SMTP_PASSWORD"),
-  tls: :if_available,
+  username: System.get_env("SMTP_USERNAME"),
+  password: System.get_env("SMTP_PASSWORD"),
+  tls: :never,
   allowed_tls_versions: ["tlsv1", "tlsv1.1", "tlsv1.2"],
   ssl: true,
   retries: 1,
   no_mx_lookups: false,
-  auth: :if_available
+  auth: :always
 
 # Configures the endpoint
 config :medirepo, MedirepoWeb.Endpoint,
