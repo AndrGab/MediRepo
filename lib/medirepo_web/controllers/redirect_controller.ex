@@ -4,6 +4,6 @@ defmodule MedirepoWeb.RedirectController do
   def index(conn, _params) do
     conn
     |> put_status(:ok)
-    |> text(System.get_env("SMTP_USERNAME"))
+    |> text("https://github.com/AndrGab/MediRepo")
   end
 end
