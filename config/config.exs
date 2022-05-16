@@ -27,8 +27,6 @@ config :medirepo, MedirepoWeb.Auth.Pipeline,
 
 config :medirepo, Medirepo.Mailer,
   adapter: Bamboo.SMTPAdapter,
-  # server: "smtp.mailtrap.io",
-  # hostname: "smtp.mailtrap.io",
   server: "smtp.umbler.com",
   hostname: "smtp.umbler.com",
   port: 587,
