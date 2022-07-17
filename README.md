@@ -61,34 +61,6 @@ Technologies used to write this API:
 
 ![bulletin2](https://user-images.githubusercontent.com/57791712/119598328-1f7fca00-bdb9-11eb-87a9-7b4ee4c35ee0.gif)
   
-## Lessons Learned
-
-- JWT Authetication;
-- PostgreSQL query;
-- Changeset validation;
-
-## Installation 
-
-Install my-project with mix
-
-```elixir
-~# mix phx.new medirepo --no-webpack --no-html
-
-
-~/medirepo# deps.get
-
-~/medirepo# mix credo.gen.config
-
-~/medirepo# mix credo
-
-~/medirepo# mix ecto.create
-
-~/medirepo# mix ecto.gen.migration create_hospitals_table
-
-~/medirepo# mix ecto.gen.migration create_bulletins_table
-
-~/medirepo# mix ecto.migrate
-```
     
 ## Feedback
 
