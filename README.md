@@ -26,7 +26,6 @@
   <img alt="GitHub" src="https://img.shields.io/github/license/Andrgab/MediRepo?color=ff69b4">
 </p>
 
-
 # Medirepo - Daily Medical Report API
 
 [![postman](https://img.shields.io/badge/documentation%20in-postman-orange?logo=postman)](https://documenter.getpostman.com/view/15643514/TzzBpFsL)
@@ -38,37 +37,69 @@ This is a personal project to help hospitals sharing Daily Medical Reports with 
 
 ## LIVE DEMO
 
-Acesse a aplicação de demonstração:
+Access the demo application:
 
 <a href="https://medirepo.vercel.app/" target="_blank" rel="noopener noreferrer">
     https://medirepo.vercel.app/
   </a>
-  
 
-  
-## Technologies
-Technologies used to write this API:
 
-- Elixir;
-- Phoenix;
-- Exmachina;
-- Excoveralls;
-- Credo;
-- Bamboo;
-- PostgreSQL.
-  
+# 🎃 HacktoberFest 🎃
+
+If you came here for Hacktoberfest 🦇️:
+
+Celebrate [Hacktoberfest](https://hacktoberfest.com/) by getting involved in the open source community by completing some tasks in this project.
+
+This repository is open to all members of the GitHub community. Any member may contribute to this project without being a collaborator.
+
+# Contributions
+
+You can contribute to this project including new features, architectural improvements, including i18n functions and translating these messages into your native language.
+Feel free to contribute!
+
+## What is Hacktoberfest?
+
+HACKTOBERFEST IS DIGITALOCEAN’S ANNUAL EVENT THAT ENCOURAGES PEOPLE TO CONTRIBUTE TO OPEN SOURCE THROUGHOUT OCTOBER. MUCH OF MODERN TECH INFRASTRUCTURE—INCLUDING SOME OF DIGITALOCEAN’S OWN PRODUCTS—RELIES ON OPEN-SOURCE PROJECTS BUILT AND MAINTAINED BY PASSIONATE PEOPLE WHO OFTEN DON’T HAVE THE STAFF OR BUDGETS TO DO MUCH MORE THAN KEEP THE PROJECT ALIVE. HACKTOBERFEST IS ALL ABOUT GIVING BACK TO THOSE PROJECTS, SHARPENING SKILLS, AND CELEBRATING ALL THINGS OPEN SOURCE, ESPECIALLY THE PEOPLE THAT MAKE OPEN SOURCE SO SPECIAL.
+
+[https://hacktoberfest.com/](https://hacktoberfest.com/)
+
+## Getting started
+
+- Fork this repository (Click the Fork button in the top right of this page, click your Profile Image)
+- Clone your fork down to your local machine
+
+```markdown
+git clone https://github.com/your-username/hacktoberfest.git
+```
+
+- Create a branch
+
+```markdown
+git checkout -b branch-name
+```
+
+- Make your changes (Be creative!)
+- Commit and push
+
+```markdown
+git add .
+git commit -m 'Commit message'
+git push origin branch-name
+```
+
+- Create a new pull request from your forked repository (Click the `New Pull Request` button located at the top of your repo)
+- Wait for your PR review and merge approval!
+
+- **Please STAR this repository** if you had fun!
+
 ## Screenshots
 
 ![bulletin2](https://user-images.githubusercontent.com/57791712/119598328-1f7fca00-bdb9-11eb-87a9-7b4ee4c35ee0.gif)
-  
-    
+
 ## Feedback
 
 If you have any feedback, please reach out to me at andrgab@gmail.com
 
-  
 ## Authors
 
 Made with :purple_heart: by [@andrgab](https://www.github.com/andrgab)
-
-  
