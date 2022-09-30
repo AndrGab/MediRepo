@@ -58,7 +58,13 @@ This repository is open to all members of the GitHub community. Any member may c
 
 ## Contributions
 
-You can contribute to this project including new features, architectural improvements, including i18n functions and translating these messages into your native language.
+You can contribute to this project including:
+
+- new features;
+- architectural improvements;
+- including i18n functions and translating these messages into your native language;
+- increasing test coverage;
+
 Feel free to contribute!
 
 ## What is Hacktoberfest?
