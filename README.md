@@ -35,6 +35,11 @@
 Most hospitals are restricting visitors for COVID-19 Patients.
 This is a personal project to help hospitals sharing Daily Medical Reports with those patients family.
 
+## Front End
+
+Front-end (React) repository:
+https://github.com/AndrGab/medirepoWeb
+
 ## LIVE DEMO
 
 Access the demo application:
