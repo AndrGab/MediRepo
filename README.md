@@ -43,7 +43,6 @@ Access the demo application:
     https://medirepo.vercel.app/
   </a>
 
-
 # 🎃 HacktoberFest 🎃
 
 If you came here for Hacktoberfest 🦇️:
@@ -52,14 +51,14 @@ Celebrate [Hacktoberfest](https://hacktoberfest.com/) by getting involved in the
 
 This repository is open to all members of the GitHub community. Any member may contribute to this project without being a collaborator.
 
-# Contributions
+## Contributions
 
 You can contribute to this project including new features, architectural improvements, including i18n functions and translating these messages into your native language.
 Feel free to contribute!
 
 ## What is Hacktoberfest?
 
-HACKTOBERFEST IS DIGITALOCEAN’S ANNUAL EVENT THAT ENCOURAGES PEOPLE TO CONTRIBUTE TO OPEN SOURCE THROUGHOUT OCTOBER. MUCH OF MODERN TECH INFRASTRUCTURE—INCLUDING SOME OF DIGITALOCEAN’S OWN PRODUCTS—RELIES ON OPEN-SOURCE PROJECTS BUILT AND MAINTAINED BY PASSIONATE PEOPLE WHO OFTEN DON’T HAVE THE STAFF OR BUDGETS TO DO MUCH MORE THAN KEEP THE PROJECT ALIVE. HACKTOBERFEST IS ALL ABOUT GIVING BACK TO THOSE PROJECTS, SHARPENING SKILLS, AND CELEBRATING ALL THINGS OPEN SOURCE, ESPECIALLY THE PEOPLE THAT MAKE OPEN SOURCE SO SPECIAL.
+🎃 HacktoberFest is digitalocean’s annual event that encourages people to contribute to open source throughout october. Much of modern tech infrastructure—including some of digitalocean’s own products—relies on open-source projects built and maintained by passionate people who often don’t have the staff or budgets to do much more than keep the project alive. 🎃 HacktoberFest is all about giving back to those projects, sharpening skills, and celebrating all things open source, especially the people that make open source so special.
 
 [https://hacktoberfest.com/](https://hacktoberfest.com/)
 
