@@ -43,7 +43,7 @@ Access the demo application:
     https://medirepo.vercel.app/
   </a>
 
-# 🎃 HacktoberFest 🎃
+# 🎃 HacktoberFest 2022 🎃
 
 If you came here for Hacktoberfest 🦇️:
 
