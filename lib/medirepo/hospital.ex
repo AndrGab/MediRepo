@@ -2,7 +2,7 @@ defmodule Medirepo.Hospital do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Medirepo.Bulletin
+  alias Medirepo.Models.Bulletin
 
   alias Ecto.Changeset
 

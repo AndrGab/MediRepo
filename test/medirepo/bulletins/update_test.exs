@@ -1,8 +1,9 @@
 defmodule Medirepo.Bulletins.UpdateTest do
   use Medirepo.DataCase, async: true
 
-  alias Medirepo.{Bulletin, Error, Hospital}
-  alias Medirepo.Bulletins.{Create, Update}
+  alias Medirepo.Bulletins
+  alias Medirepo.Models.Bulletin
+  alias Medirepo.{Error, Hospital}
   alias Medirepo.Hospitals.Create, as: HospCreate
 
   import Medirepo.Factory
@@ -21,7 +22,7 @@ defmodule Medirepo.Bulletins.UpdateTest do
       {:ok,
        %Bulletin{
          id: id
-       }} = Create.call(params)
+       }} = Bulletins.create_bulletin(params)
 
       {:ok, id: id}
     end
@@ -29,7 +30,7 @@ defmodule Medirepo.Bulletins.UpdateTest do
     test "when all params are valid, returns the bulletin", %{id: id} do
       update_params = %{"id" => id, "nome" => "Andre", "obs" => "PACIENTE"}
 
-      response = Update.call(update_params)
+      response = Bulletins.update_bulletin(update_params)
 
       assert {:ok,
               %Bulletin{
@@ -54,7 +55,7 @@ defmodule Medirepo.Bulletins.UpdateTest do
     test "when there are invalid params, returns an error", %{id: id} do
       update_params = %{"id" => id, "nome" => "A", "obs" => "P"}
 
-      response = Update.call(update_params)
+      response = Bulletins.update_bulletin(update_params)
 
       expected_response = %{
         nome: ["should be at least 2 character(s)"],
@@ -66,8 +67,7 @@ defmodule Medirepo.Bulletins.UpdateTest do
     end
 
     test "when an inexistent id is sent, returns an error" do
-      response =
-        Update.call(%{
+        response = Bulletins.update_bulletin(%{
           "id" => "22d9e500-bacb-4e30-997a-239e5c2bb6b8",
           "name" => "Hospital de Teste"
         })

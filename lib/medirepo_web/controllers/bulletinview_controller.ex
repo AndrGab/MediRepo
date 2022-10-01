@@ -1,8 +1,8 @@
 defmodule MedirepoWeb.BulletinViewController do
   use MedirepoWeb, :controller
 
-  alias Medirepo.Bulletin
-  alias Medirepo.Bulletins.GetValid
+  alias Medirepo.Bulletins
+  alias Medirepo.Models.Bulletin
   alias MedirepoWeb.Auth.Guardian
   alias MedirepoWeb.FallbackController
 
@@ -10,7 +10,7 @@ defmodule MedirepoWeb.BulletinViewController do
 
   def index(conn, _params) do
     with {:ok, params} <- Guardian.current_bulletin(conn),
-         {:ok, %Bulletin{} = bulletin} <- GetValid.call(params) do
+         {:ok, %Bulletin{} = bulletin} <- Bulletins.get_valid(params) do
       conn
       |> put_status(:ok)
       |> render("bulletin.json", bulletin: bulletin)

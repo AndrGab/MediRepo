@@ -1,13 +1,13 @@
 defmodule Medirepo.Hospitals.DeleteTest do
   use Medirepo.DataCase, async: true
 
-  alias Medirepo.Bulletins.Create, as: CreateBulletin
+  alias Medirepo.Bulletins
   alias Medirepo.{Error, Hospital}
   alias Medirepo.Hospitals.{Create, Delete}
 
   import Medirepo.Factory
 
-  describe "call/1" do
+  describe "delete/1" do
     test "when id is valid, deletes the hospital" do
       params = build(:hospital_params)
 
@@ -45,7 +45,7 @@ defmodule Medirepo.Hospitals.DeleteTest do
 
       bul_params = build(:bulletin_params, %{"hospital_id" => id})
 
-      CreateBulletin.call(bul_params)
+      Bulletins.create_bulletin(bul_params)
 
       response = Delete.call(id)
 
