@@ -29,9 +29,7 @@ defmodule Medirepo.Email do
       from: "andre.gabriel@elxdev.com",
       subject: "Reset password token",
       text_body:
-        "Utilize o link abaixo para logar na plataforma e atualize sua senha:\nhttps://medirepo.vercel.app/hospitals/fastlogin/#{
-          id
-        }/#{token} \nEsse link de acesso expira em 10 minutos.\nObrigado"
+        "Utilize o link abaixo para logar na plataforma e atualize sua senha:\nhttps://medirepo.vercel.app/hospitals/fastlogin/#{id}/#{token} \nEsse link de acesso expira em 10 minutos.\nObrigado"
     )
   end
 end
