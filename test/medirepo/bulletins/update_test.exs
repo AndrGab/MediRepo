@@ -2,10 +2,10 @@ defmodule Medirepo.Bulletins.UpdateTest do
   use Medirepo.DataCase, async: true
 
   alias Medirepo.Bulletins
-  alias Medirepo.Models.Bulletin
-  alias Medirepo.{Error, Hospital}
-  alias Medirepo.Hospitals.Create, as: HospCreate
-
+  alias Medirepo.Bulletins.Models.Bulletin
+  alias Medirepo.Error
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
   import Medirepo.Factory
 
   describe "call/1" do
@@ -15,7 +15,7 @@ defmodule Medirepo.Bulletins.UpdateTest do
       {:ok,
        %Hospital{
          id: hosp_id
-       }} = HospCreate.call(params_hosp)
+       }} = Hospitals.create_hospital(params_hosp)
 
       params = build(:bulletin_params, %{"hospital_id" => hosp_id})
 

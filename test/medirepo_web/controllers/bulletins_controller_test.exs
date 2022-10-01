@@ -1,8 +1,8 @@
 defmodule MedirepoWeb.BulletinsControllerTest do
   use MedirepoWeb.ConnCase, async: true
 
-  alias Medirepo.Models.Bulletin
-  alias Medirepo.Hospital
+  alias Medirepo.Bulletins.Models.Bulletin
+  alias Medirepo.Hospitals.Models.Hospital
   alias MedirepoWeb.Auth.Guardian
 
   import Medirepo.Factory

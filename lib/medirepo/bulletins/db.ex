@@ -1,9 +1,10 @@
 defmodule Medirepo.Bulletins.Db do
   @moduledoc false
 
-  alias Medirepo.{Error, Repo}
-  alias Medirepo.Models.Bulletin
+  alias Medirepo.Bulletins.Models.Bulletin
   alias Medirepo.Bulletins.Queries.Bulletin, as: BulletinQuery
+  alias Medirepo.Error
+  alias Medirepo.Repo
 
   def insert(params) do
     params

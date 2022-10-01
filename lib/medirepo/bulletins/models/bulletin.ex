@@ -1,9 +1,9 @@
-defmodule Medirepo.Models.Bulletin do
+defmodule Medirepo.Bulletins.Models.Bulletin do
   use Ecto.Schema
   import Ecto.Changeset
 
   alias Ecto.{Changeset, UUID}
-  alias Medirepo.Hospital
+  alias Medirepo.Hospitals.Models.Hospital
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

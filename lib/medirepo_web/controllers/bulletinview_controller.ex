@@ -2,7 +2,7 @@ defmodule MedirepoWeb.BulletinViewController do
   use MedirepoWeb, :controller
 
   alias Medirepo.Bulletins
-  alias Medirepo.Models.Bulletin
+  alias Medirepo.Bulletins.Models.Bulletin
   alias MedirepoWeb.Auth.Guardian
   alias MedirepoWeb.FallbackController
 
