@@ -1,8 +1,8 @@
 defmodule Medirepo.Factory do
   use ExMachina.Ecto, repo: Medirepo.Repo
 
-  alias Medirepo.Models.Bulletin
-  alias Medirepo.Hospital
+  alias Medirepo.Bulletins.Models.Bulletin
+  alias Medirepo.Hospitals.Models.Hospital
 
   def hospital_params_factory do
     %{

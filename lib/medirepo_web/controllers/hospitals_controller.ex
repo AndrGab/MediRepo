@@ -1,7 +1,9 @@
 defmodule MedirepoWeb.HospitalsController do
   use MedirepoWeb, :controller
 
-  alias Medirepo.{Email, Hospital}
+  alias Medirepo.Email
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
   alias MedirepoWeb.Auth.Guardian
   alias MedirepoWeb.FallbackController
 
@@ -9,7 +11,7 @@ defmodule MedirepoWeb.HospitalsController do
 
   def create(conn, params) do
     with {:ok, %Hospital{id: hospital, name: name, email: email}} <-
-           Medirepo.create_hospital(params),
+           Hospitals.create_hospital(params),
          {:ok, token, _claims} <-
            Guardian.encode_and_sign(hospital, %{ate: "000"}, ttl: {30, :minute}),
          {:ok, _email} <- Email.send_welcome_email(name, email, hospital) do
@@ -21,7 +23,7 @@ defmodule MedirepoWeb.HospitalsController do
 
   def delete(conn, _params) do
     with {:ok, logged_hospital} <- Guardian.current_hospital(conn),
-         {:ok, %Hospital{}} <- Medirepo.delete_hospital(logged_hospital) do
+         {:ok, %Hospital{}} <- Hospitals.delete_hospital(logged_hospital) do
       conn
       |> put_status(:no_content)
       |> text("")
@@ -30,7 +32,7 @@ defmodule MedirepoWeb.HospitalsController do
 
   def index(conn, _params) do
     with {:ok, logged_hospital} <- Guardian.current_hospital(conn),
-         {:ok, %Hospital{} = hospital} <- Medirepo.get_hospital_by_id(logged_hospital) do
+         {:ok, %Hospital{} = hospital} <- Hospitals.get_hospital_by_id(logged_hospital) do
       conn
       |> put_status(:ok)
       |> render("hospital.json", hospital: hospital)
@@ -38,8 +40,8 @@ defmodule MedirepoWeb.HospitalsController do
   end
 
   def reset_password(conn, params) do
-    with {:ok, %Hospital{id: id, email: email}} <- Medirepo.get_hospital_by_email(params),
-         {:ok, %Hospital{password_reset_token: token} = hospital} <- Medirepo.reset_password(id),
+    with {:ok, %Hospital{id: id, email: email}} <- Hospitals.get_hospital_by_email(params),
+         {:ok, %Hospital{password_reset_token: token} = hospital} <- Hospitals.reset_password(id),
          {:ok, _email} <- Email.send_reset_password_email(email, id, token) do
       conn
       |> put_status(:ok)
@@ -64,7 +66,7 @@ defmodule MedirepoWeb.HospitalsController do
   end
 
   def show_list(conn, _params) do
-    with {:ok, hospital} <- Medirepo.get_hospitals() do
+    with {:ok, hospital} <- Hospitals.get_hospitals() do
       conn
       |> put_status(:ok)
       |> render("hospital.json", hospital: hospital)
@@ -75,7 +77,7 @@ defmodule MedirepoWeb.HospitalsController do
     with {:ok, logged_hospital} <- Guardian.current_hospital(conn) do
       params = Map.put(params, "id", logged_hospital)
 
-      with {:ok, %Hospital{} = hospital} <- Medirepo.update_hospital(params) do
+      with {:ok, %Hospital{} = hospital} <- Hospitals.update_hospital(params) do
         conn
         |> put_status(:ok)
         |> render("hospital.json", hospital: hospital)

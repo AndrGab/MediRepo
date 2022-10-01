@@ -1,7 +1,7 @@
 defmodule MedirepoWeb.HospitalsView do
   use MedirepoWeb, :view
 
-  alias Medirepo.Hospital
+  alias Medirepo.Hospitals.Models.Hospital
 
   def render("create.json", %{hospital: %Hospital{} = hospital, token: token}) do
     %{

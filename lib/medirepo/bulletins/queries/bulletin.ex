@@ -3,7 +3,7 @@ defmodule Medirepo.Bulletins.Queries.Bulletin do
 
   import Ecto.Query
 
-  alias Medirepo.Models.Bulletin
+  alias Medirepo.Bulletins.Models.Bulletin
 
   def by_id(id) do
     from(bulletin in Bulletin, where: bulletin.hospital_id == ^id)

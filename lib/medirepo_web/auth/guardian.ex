@@ -1,9 +1,10 @@
 defmodule MedirepoWeb.Auth.Guardian do
   use Guardian, otp_app: :medirepo
 
-  alias Medirepo.Bulletins.GetValid, as: GetValid
-  alias Medirepo.{Error, Hospital}
-  alias Medirepo.Hospitals.Get, as: HospitalGet
+  alias Medirepo.Bulletins
+  alias Medirepo.Error
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
 
   def subject_for_token(hospital_id, _claims) do
     {:ok, hospital_id}
@@ -12,7 +13,7 @@ defmodule MedirepoWeb.Auth.Guardian do
   def resource_from_claims(claims) do
     claims
     |> Map.get("sub")
-    |> HospitalGet.by_id()
+    |> Hospitals.get_hospital_by_id()
   end
 
   def atual_token(conn) do
@@ -33,7 +34,7 @@ defmodule MedirepoWeb.Auth.Guardian do
 
   def authenticate(%{"email" => email, "password" => password}) do
     with {:ok, %Hospital{password_hash: hash, id: hospital_id}} <-
-           HospitalGet.by_email(%{"email" => email}),
+           Hospitals.get_hospital_by_email(%{"email" => email}),
          true <- Pbkdf2.verify_pass(password, hash),
          {:ok, token, _claims} <- encode_and_sign(hospital_id, %{ate: "000"}, ttl: {30, :minute}) do
       {:ok, token}
@@ -52,7 +53,7 @@ defmodule MedirepoWeb.Auth.Guardian do
 
   def with_reset_token(%{"id" => hospital_id, "reset_token" => _passed_token} = params) do
     with {:ok, %Hospital{password_sent_email_at: saved_dt_token}} <-
-           HospitalGet.by_id_and_reset_token(params),
+           Hospitals.get_by_id_and_reset_token(params),
          true <- valid_reset_token?(saved_dt_token),
          {:ok, token, _claims} <- encode_and_sign(hospital_id, %{ate: "000"}, ttl: {30, :minute}) do
       {:ok, token}
@@ -72,7 +73,7 @@ defmodule MedirepoWeb.Auth.Guardian do
           "id" => id
         } = params
       ) do
-    with {:ok, _result} <- GetValid.call(params),
+    with {:ok, _result} <- Bulletins.get_valid(params),
          {:ok, token, _claims} <-
            encode_and_sign(id, %{ate: atendimento, pac: cd_paciente, dat: dt_nascimento},
              ttl: {30, :minute}

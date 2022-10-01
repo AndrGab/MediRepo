@@ -2,9 +2,10 @@ defmodule Medirepo.Bulletins.CreateTest do
   use Medirepo.DataCase, async: true
 
   alias Medirepo.Bulletins
-  alias Medirepo.Models.Bulletin
-  alias Medirepo.{Error, Hospital}
-  alias Medirepo.Hospitals.Create, as: HospCreate
+  alias Medirepo.Bulletins.Models.Bulletin
+  alias Medirepo.Error
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
 
   import Medirepo.Factory
 
@@ -15,7 +16,7 @@ defmodule Medirepo.Bulletins.CreateTest do
       {:ok,
        %Hospital{
          id: hosp_id
-       }} = HospCreate.call(params_hosp)
+       }} = Hospitals.create_hospital(params_hosp)
 
       {:ok, hosp_id: hosp_id}
     end
@@ -55,9 +56,7 @@ defmodule Medirepo.Bulletins.CreateTest do
           "hospital_id" => hosp_id
         })
 
-
-
-        response = Bulletins.create_bulletin(params)
+      response = Bulletins.create_bulletin(params)
 
       expected_response = %{
         atendimento: ["must be greater than 0"],

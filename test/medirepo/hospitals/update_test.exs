@@ -1,8 +1,9 @@
 defmodule Medirepo.Hospitals.UpdateTest do
   use Medirepo.DataCase, async: true
 
-  alias Medirepo.{Error, Hospital}
-  alias Medirepo.Hospitals.{Create, Update}
+  alias Medirepo.Error
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
 
   import Medirepo.Factory
 
@@ -13,11 +14,11 @@ defmodule Medirepo.Hospitals.UpdateTest do
       {:ok,
        %Hospital{
          id: id
-       }} = Create.call(params)
+       }} = Hospitals.create_hospital(params)
 
       update_params = %{"id" => id, "name" => "Hospital de Teste", "password" => "123456"}
 
-      response = Update.call(update_params)
+      response = Hospitals.update_hospital(update_params)
 
       assert {:ok,
               %Hospital{
@@ -31,7 +32,7 @@ defmodule Medirepo.Hospitals.UpdateTest do
 
     test "when an inexistent id is sent, returns an error" do
       response =
-        Update.call(%{
+        Hospitals.update_hospital(%{
           "id" => "22d9e500-bacb-4e30-997a-239e5c2bb6b8",
           "name" => "Hospital de Teste"
         })
@@ -48,7 +49,7 @@ defmodule Medirepo.Hospitals.UpdateTest do
       {:ok,
        %Hospital{
          id: id
-       }} = Create.call(params)
+       }} = Hospitals.create_hospital(params)
 
       update_params = %{
         "id" => id,
@@ -56,7 +57,7 @@ defmodule Medirepo.Hospitals.UpdateTest do
         "password_sent_email_at" => NaiveDateTime.utc_now()
       }
 
-      response = Update.call(update_params)
+      response = Hospitals.update_hospital(update_params)
 
       assert {:ok,
               %Hospital{

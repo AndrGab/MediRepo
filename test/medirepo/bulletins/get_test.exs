@@ -2,9 +2,10 @@ defmodule Medirepo.Bulletins.GetTest do
   use Medirepo.DataCase, async: true
 
   alias Medirepo.Bulletins
-  alias Medirepo.Models.Bulletin
-  alias Medirepo.{Error, Hospital}
-  alias Medirepo.Hospitals.Create, as: HospCreate
+  alias Medirepo.Bulletins.Models.Bulletin
+  alias Medirepo.Error
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
 
   import Medirepo.Factory
 
@@ -15,7 +16,7 @@ defmodule Medirepo.Bulletins.GetTest do
       {:ok,
        %Hospital{
          id: hosp_id
-       }} = HospCreate.call(params_hosp)
+       }} = Hospitals.create_hospital(params_hosp)
 
       {:ok, hosp_id: hosp_id}
     end
@@ -51,7 +52,7 @@ defmodule Medirepo.Bulletins.GetTest do
       {:ok,
        %Hospital{
          id: hosp_id
-       }} = HospCreate.call(params_hosp)
+       }} = Hospitals.create_hospital(params_hosp)
 
       {:ok, hosp_id: hosp_id}
     end
@@ -59,10 +60,9 @@ defmodule Medirepo.Bulletins.GetTest do
     test "get all bulletins from database", %{hosp_id: hosp_id} do
       params = build(:bulletin_params, %{"hospital_id" => hosp_id})
 
-     Bulletins.create_bulletin(params)
+      Bulletins.create_bulletin(params)
 
-      response =
-        Bulletins.get_bulletins()
+      response = Bulletins.get_bulletins()
 
       assert {:ok,
               [
@@ -73,8 +73,7 @@ defmodule Medirepo.Bulletins.GetTest do
     end
 
     test "Returns error when database is empty" do
-      response =  Bulletins.get_bulletins()
-
+      response = Bulletins.get_bulletins()
 
       expected_response = {:error, Error.build(:not_found, "Empty database")}
       assert response == expected_response
