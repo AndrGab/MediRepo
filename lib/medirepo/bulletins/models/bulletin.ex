@@ -1,4 +1,4 @@
-defmodule Medirepo.Bulletin do
+defmodule Medirepo.Models.Bulletin do
   use Ecto.Schema
   import Ecto.Changeset
 
