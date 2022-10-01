@@ -26,7 +26,7 @@ defmodule Medirepo.Bulletins.DeleteTest do
       {:ok,
        %Bulletin{
          id: id
-       }} =Bulletins.create_bulletin(params)
+       }} = Bulletins.create_bulletin(params)
 
       response = Bulletins.delete_bulletin(id)
 

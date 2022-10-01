@@ -1,5 +1,4 @@
 defmodule Medirepo do
-
   alias Medirepo.Hospitals.Create, as: HospitalCreate
   alias Medirepo.Hospitals.Delete, as: HospitalDelete
   alias Medirepo.Hospitals.Get, as: HospitalGet

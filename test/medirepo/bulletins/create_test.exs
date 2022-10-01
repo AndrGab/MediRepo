@@ -55,9 +55,7 @@ defmodule Medirepo.Bulletins.CreateTest do
           "hospital_id" => hosp_id
         })
 
-
-
-        response = Bulletins.create_bulletin(params)
+      response = Bulletins.create_bulletin(params)
 
       expected_response = %{
         atendimento: ["must be greater than 0"],

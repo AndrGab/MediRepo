@@ -31,7 +31,6 @@ defmodule Medirepo.Bulletins.GetValidTest do
        }} = Bulletins.create_bulletin(params)
 
       response =
-
         Bulletins.get_valid(%{
           "login" => cd_pac,
           "password" => atend,
@@ -53,7 +52,7 @@ defmodule Medirepo.Bulletins.GetValidTest do
          dt_nascimento: dt_nasc,
          atendimento: atend,
          cd_paciente: _cd_pac
-       }} =Bulletins.create_bulletin(params)
+       }} = Bulletins.create_bulletin(params)
 
       response =
         Bulletins.get_valid(%{

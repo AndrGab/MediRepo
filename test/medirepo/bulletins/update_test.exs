@@ -67,7 +67,8 @@ defmodule Medirepo.Bulletins.UpdateTest do
     end
 
     test "when an inexistent id is sent, returns an error" do
-        response = Bulletins.update_bulletin(%{
+      response =
+        Bulletins.update_bulletin(%{
           "id" => "22d9e500-bacb-4e30-997a-239e5c2bb6b8",
           "name" => "Hospital de Teste"
         })
