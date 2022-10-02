@@ -6,7 +6,7 @@
   Elixir/Phoenix API for Daily Medical Reports
 </h3>
 
-<p align="center">Making communication easier for Hospitals and Pacients Family</p>
+<p align="center">Making communication easier for Hospitals and Patients' Families</p>
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Andrgab/MediRepo?color=ff69b4&logo=elixir">
@@ -32,8 +32,8 @@
 
 ## MediRepo
 
-Most hospitals are restricting visitors for COVID-19 Patients.
-This is a personal project to help hospitals sharing Daily Medical Reports with those patients family.
+Most hospitals are restricting visitors for COVID-19 Patients. 
+This is a personal project to help hospitals to share Daily Medical Reports with those patients' families.
 
 ## Front End
 
@@ -69,7 +69,7 @@ Feel free to contribute!
 
 ## What is Hacktoberfest?
 
-🎃 HacktoberFest is digitalocean’s annual event that encourages people to contribute to open source throughout october. Much of modern tech infrastructure—including some of digitalocean’s own products—relies on open-source projects built and maintained by passionate people who often don’t have the staff or budgets to do much more than keep the project alive. 🎃 HacktoberFest is all about giving back to those projects, sharpening skills, and celebrating all things open source, especially the people that make open source so special.
+🎃 HacktoberFest is digitalocean’s annual event that encourages people to contribute to open source throughout October. Much of modern tech infrastructure—including some of digitalocean’s own products—relies on open-source projects built and maintained by passionate people who often don’t have the staff or budgets to do much more than keeping the project alive. 🎃 HacktoberFest is all about giving back to those projects, sharpening skills, and celebrating all things open source, especially the people that make open source so special.
 
 [https://hacktoberfest.com/](https://hacktoberfest.com/)
 
