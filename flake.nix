@@ -1,6 +1,6 @@
 {
   description = ''
-    Gerenciador de boletos
+    Daily medical reports
   '';
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -16,7 +16,7 @@
     in
     rec {
       devShells."${system}".default = with pkgs; mkShell {
-        name = "billet_manager";
+        name = "medirepo";
         buildInputs = [
           gnumake
           gcc
