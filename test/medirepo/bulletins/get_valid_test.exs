@@ -25,9 +25,9 @@ defmodule Medirepo.Bulletins.GetValidTest do
 
       {:ok,
        %Bulletin{
-         dt_nascimento: dt_nasc,
-         atendimento: atend,
-         cd_paciente: cd_pac
+         dt_birth: dt_nasc,
+         attendance: atend,
+         cd_patient: cd_pac
        }} = Bulletins.create_bulletin(params)
 
       response =
@@ -40,7 +40,7 @@ defmodule Medirepo.Bulletins.GetValidTest do
 
       assert {:ok,
               %Bulletin{
-                nome: "Andre"
+                name: "Andre"
               }} = response
     end
 
@@ -49,9 +49,9 @@ defmodule Medirepo.Bulletins.GetValidTest do
 
       {:ok,
        %Bulletin{
-         dt_nascimento: dt_nasc,
-         atendimento: atend,
-         cd_paciente: _cd_pac
+         dt_birth: dt_nasc,
+         attendance: atend,
+         cd_patient: _cd_pac
        }} = Bulletins.create_bulletin(params)
 
       response =

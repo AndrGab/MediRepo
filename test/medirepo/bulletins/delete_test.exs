@@ -33,7 +33,7 @@ defmodule Medirepo.Bulletins.DeleteTest do
 
       assert {:ok,
               %Bulletin{
-                nome: "Andre"
+                name: "Andre"
               }} = response
     end
 

@@ -17,11 +17,11 @@ defmodule Medirepo.Bulletins.Queries.Bulletin do
       }) do
     from(bulletin in Bulletin,
       where:
-        bulletin.dt_nascimento ==
+        bulletin.dt_birth ==
           ^vl_date and
-          bulletin.atendimento ==
+          bulletin.attendance ==
             ^vl_password and
-          bulletin.cd_paciente == ^vl_login and
+          bulletin.cd_patient == ^vl_login and
           bulletin.hospital_id == ^id,
       order_by: bulletin.inserted_at,
       preload: [:hospital]

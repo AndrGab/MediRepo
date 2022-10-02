@@ -28,38 +28,38 @@ defmodule Medirepo.Bulletins.UpdateTest do
     end
 
     test "when all params are valid, returns the bulletin", %{id: id} do
-      update_params = %{"id" => id, "nome" => "Andre", "obs" => "PACIENTE"}
+      update_params = %{"id" => id, "name" => "Andre", "notes" => "PACIENTE"}
 
       response = Bulletins.update_bulletin(update_params)
 
       assert {:ok,
               %Bulletin{
                 id: _id,
-                nome: "Andre",
-                dt_nascimento: _dt_nasc,
-                geral: "ESTAVEL",
-                pressao: "NORMAL",
-                consciencia: "CONSCIENTE",
-                febre: "Ausente",
-                respiracao: "NORMAL",
+                name: "Andre",
+                dt_birth: _dt_nasc,
+                general: "ESTAVEL",
+                pressure: "NORMAL",
+                conscience: "CONSCIENTE",
+                fever: "Ausente",
+                respiration: "NORMAL",
                 diurese: "NORMAL",
-                obs: "PACIENTE",
-                medico: "ANTONIO CARLOS PETRUS",
-                dt_assinatura: _dt_assin,
-                atendimento: 99_999,
-                cd_paciente: 88_888,
+                notes: "PACIENTE",
+                doctor: "ANTONIO CARLOS PETRUS",
+                dt_signature: _dt_assin,
+                attendance: 99_999,
+                cd_patient: 88_888,
                 hospital_id: _hosp_id
               }} = response
     end
 
     test "when there are invalid params, returns an error", %{id: id} do
-      update_params = %{"id" => id, "nome" => "A", "obs" => "P"}
+      update_params = %{"id" => id, "name" => "A", "notes" => "P"}
 
       response = Bulletins.update_bulletin(update_params)
 
       expected_response = %{
-        nome: ["should be at least 2 character(s)"],
-        obs: ["should be at least 6 character(s)"]
+        name: ["should be at least 2 character(s)"],
+        notes: ["should be at least 6 character(s)"]
       }
 
       assert {:error, %Error{status: :bad_request, result: changeset}} = response
