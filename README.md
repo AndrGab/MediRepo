@@ -32,7 +32,7 @@
 
 ## MediRepo
 
-Most hospitals are restricting visitors for COVID-19 Patients. 
+Most hospitals are restricting visitors for COVID-19 Patients.
 This is a personal project to help hospitals to share Daily Medical Reports with those patients' families.
 
 ## Front End
@@ -113,3 +113,11 @@ If you have any feedback, please reach out to me at andrgab@gmail.com
 ## Authors
 
 Made with :purple_heart: by [@andrgab](https://www.github.com/andrgab)
+
+## Contributors
+
+<a href="https://github.com/andrgab/medirepo/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=andrgab/medirepo" />
+</a>
+
+Contributors image made with [contrib.rocks](https://contrib.rocks).
