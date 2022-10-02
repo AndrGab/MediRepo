@@ -67,15 +67,15 @@ defmodule MedirepoWeb.Auth.Guardian do
 
   def auth_view(
         %{
-          "login" => cd_paciente,
-          "password" => atendimento,
-          "dt_nasc" => dt_nascimento,
+          "login" => cd_patient,
+          "password" => attendance,
+          "dt_nasc" => dt_birth,
           "id" => id
         } = params
       ) do
     with {:ok, _result} <- Bulletins.get_valid(params),
          {:ok, token, _claims} <-
-           encode_and_sign(id, %{ate: atendimento, pac: cd_paciente, dat: dt_nascimento},
+           encode_and_sign(id, %{ate: attendance, pac: cd_patient, dat: dt_birth},
              ttl: {30, :minute}
            ) do
       {:ok, token}

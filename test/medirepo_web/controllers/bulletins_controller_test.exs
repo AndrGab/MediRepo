@@ -27,21 +27,21 @@ defmodule MedirepoWeb.BulletinsControllerTest do
       assert %{
                "message" => "Bulletin Created!",
                "bulletin" => %{
-                 "atendimento" => 99_999,
-                 "cd_paciente" => 88_888,
-                 "consciencia" => "CONSCIENTE",
+                 "attendance" => 99_999,
+                 "cd_patient" => 88_888,
+                 "conscience" => "CONSCIENTE",
                  "diurese" => "NORMAL",
-                 "dt_assinatura" => "2020-04-29",
-                 "dt_nascimento" => "1977-01-28",
-                 "febre" => "Ausente",
-                 "geral" => "ESTAVEL",
+                 "dt_signature" => "2020-04-29",
+                 "dt_birth" => "1977-01-28",
+                 "fever" => "Ausente",
+                 "general" => "ESTAVEL",
                  "hospital_id" => _hosp_id,
                  "id" => _id,
-                 "medico" => "ANTONIO CARLOS PETRUS",
-                 "nome" => "Andre",
-                 "obs" => "PACIENTE ESTA REAGINDO BEM",
-                 "pressao" => "NORMAL",
-                 "respiracao" => "NORMAL"
+                 "doctor" => "ANTONIO CARLOS PETRUS",
+                 "name" => "Andre",
+                 "notes" => "PACIENTE ESTA REAGINDO BEM",
+                 "pressure" => "NORMAL",
+                 "respiration" => "NORMAL"
                }
              } = response
     end
@@ -50,10 +50,10 @@ defmodule MedirepoWeb.BulletinsControllerTest do
       params =
         build(:bulletin_params,
           hospital_id: id,
-          nome: "A",
-          obs: "obs",
-          atendimento: -1,
-          cd_paciente: -1
+          name: "A",
+          notes: "notes",
+          attendance: -1,
+          cd_patient: -1
         )
 
       response =
@@ -63,10 +63,10 @@ defmodule MedirepoWeb.BulletinsControllerTest do
 
       expected_response = %{
         "message" => %{
-          "atendimento" => ["must be greater than 0"],
-          "cd_paciente" => ["must be greater than 0"],
-          "nome" => ["should be at least 2 character(s)"],
-          "obs" => ["should be at least 6 character(s)"]
+          "attendance" => ["must be greater than 0"],
+          "cd_patient" => ["must be greater than 0"],
+          "name" => ["should be at least 2 character(s)"],
+          "notes" => ["should be at least 6 character(s)"]
         }
       }
 
@@ -113,7 +113,7 @@ defmodule MedirepoWeb.BulletinsControllerTest do
       conn: conn,
       id: id
     } do
-      params = %Bulletin{id: id, nome: "Teste", obs: "123456"}
+      params = %Bulletin{id: id, name: "Teste", notes: "123456"}
 
       response =
         conn
@@ -122,21 +122,21 @@ defmodule MedirepoWeb.BulletinsControllerTest do
 
       assert response == %{
                "bulletin" => %{
-                 "atendimento" => 99_999,
-                 "cd_paciente" => 88_888,
-                 "consciencia" => "CONSCIENTE",
+                 "attendance" => 99_999,
+                 "cd_patient" => 88_888,
+                 "conscience" => "CONSCIENTE",
                  "diurese" => "NORMAL",
-                 "dt_assinatura" => "2020-04-29",
-                 "dt_nascimento" => "1977-01-28",
-                 "febre" => "Ausente",
-                 "geral" => "ESTAVEL",
+                 "dt_signature" => "2020-04-29",
+                 "dt_birth" => "1977-01-28",
+                 "fever" => "Ausente",
+                 "general" => "ESTAVEL",
                  "hospital_id" => "910a2168-b747-4c35-9c5e-74912c89213f",
                  "id" => "caf4c454-3b3e-4426-b754-80eb69a68cee",
-                 "medico" => "ANTONIO CARLOS PETRUS",
-                 "nome" => "Andre",
-                 "obs" => "PACIENTE ESTA REAGINDO BEM",
-                 "pressao" => "NORMAL",
-                 "respiracao" => "NORMAL"
+                 "doctor" => "ANTONIO CARLOS PETRUS",
+                 "name" => "Andre",
+                 "notes" => "PACIENTE ESTA REAGINDO BEM",
+                 "pressure" => "NORMAL",
+                 "respiration" => "NORMAL"
                }
              }
     end
@@ -166,21 +166,21 @@ defmodule MedirepoWeb.BulletinsControllerTest do
 
       assert response == %{
                "bulletin" => %{
-                 "atendimento" => 99_999,
-                 "cd_paciente" => 88_888,
-                 "consciencia" => "CONSCIENTE",
+                 "attendance" => 99_999,
+                 "cd_patient" => 88_888,
+                 "conscience" => "CONSCIENTE",
                  "diurese" => "NORMAL",
-                 "dt_assinatura" => "2020-04-29",
-                 "dt_nascimento" => "1977-01-28",
-                 "febre" => "Ausente",
-                 "geral" => "ESTAVEL",
+                 "dt_signature" => "2020-04-29",
+                 "dt_birth" => "1977-01-28",
+                 "fever" => "Ausente",
+                 "general" => "ESTAVEL",
                  "hospital_id" => "910a2168-b747-4c35-9c5e-74912c89213f",
                  "id" => "caf4c454-3b3e-4426-b754-80eb69a68cee",
-                 "medico" => "ANTONIO CARLOS PETRUS",
-                 "nome" => "Andre",
-                 "obs" => "PACIENTE ESTA REAGINDO BEM",
-                 "pressao" => "NORMAL",
-                 "respiracao" => "NORMAL"
+                 "doctor" => "ANTONIO CARLOS PETRUS",
+                 "name" => "Andre",
+                 "notes" => "PACIENTE ESTA REAGINDO BEM",
+                 "pressure" => "NORMAL",
+                 "respiration" => "NORMAL"
                }
              }
     end

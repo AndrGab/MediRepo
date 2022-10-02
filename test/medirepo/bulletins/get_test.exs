@@ -33,7 +33,7 @@ defmodule Medirepo.Bulletins.GetTest do
 
       assert {:ok,
               %Bulletin{
-                nome: "Andre"
+                name: "Andre"
               }} = response
     end
 
@@ -67,7 +67,7 @@ defmodule Medirepo.Bulletins.GetTest do
       assert {:ok,
               [
                 %Bulletin{
-                  nome: "Andre"
+                  name: "Andre"
                 }
               ]} = response
     end
