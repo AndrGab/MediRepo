@@ -142,6 +142,48 @@ defmodule Medirepo.Bulletins.DbTest do
     end
   end
 
+  describe "list_all_by/0" do
+    setup do
+      params_hosp = build(:hospital_params)
+
+      {:ok,
+       %Hospital{
+         id: hosp_id
+       }} = Hospitals.create_hospital(params_hosp)
+
+      {:ok, hosp_id: hosp_id}
+    end
+
+    test "list all bulletins from database by id", %{hosp_id: hosp_id} do
+      params = build(:bulletin_params, %{"hospital_id" => hosp_id})
+
+      Db.insert(params)
+
+      response = Db.list_all_by(hosp_id)
+
+      assert {:ok,
+              [
+                %Bulletin{
+                  name: "Andre"
+                }
+              ]} = response
+    end
+
+    test "Returns error when hospital id does not exists" do
+      response = Db.list_all_by("70a1be0b-9812-4302-b9f8-2a4307c7135e")
+
+      expected_response = {:error, Error.build(:not_found, "Hospital ID not found")}
+      assert response == expected_response
+    end
+
+    test "Returns error with invalid params" do
+      response = Db.list_all_by()
+
+      expected_response = {:error, Error.build(:bad_request, "Invalid Params")}
+      assert response == expected_response
+    end
+  end
+
   describe "get_all/0" do
     setup do
       params_hosp = build(:hospital_params)
