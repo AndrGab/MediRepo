@@ -3,19 +3,19 @@ defmodule Medirepo.Repo.Migrations.CreateBulletinsTable do
 
   def change do
     create table(:bulletins) do
-      add :nome, :string
-      add :dt_nascimento, :date
-      add :geral, :string
-      add :pressao, :string
-      add :consciencia, :string
-      add :febre, :string
-      add :respiracao, :string
+      add :name, :string
+      add :dt_birth, :date
+      add :general, :string
+      add :pressure, :string
+      add :conscience, :string
+      add :fever, :string
+      add :respiration, :string
       add :diurese, :string
-      add :obs, :string
-      add :medico, :string
-      add :dt_assinatura, :date
-      add :atendimento, :integer
-      add :cd_paciente, :integer
+      add :notes, :string
+      add :doctor, :string
+      add :dt_signature, :date
+      add :attendance, :integer
+      add :cd_patient, :integer
       add :hospital_id, references(:hospitals, type: :binary_id)
 
       timestamps()

@@ -1,15 +1,16 @@
 defmodule Medirepo.Hospitals.CreateTest do
   use Medirepo.DataCase, async: true
 
-  alias Medirepo.{Error, Hospital}
-  alias Medirepo.Hospitals.Create
+  alias Medirepo.Error
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
 
   import Medirepo.Factory
 
   describe "call/1" do
     test "when all params are valid, returns the hospital" do
       params = build(:hospital_params)
-      response = Create.call(params)
+      response = Hospitals.create_hospital(params)
 
       assert {:ok,
               %Hospital{
@@ -24,7 +25,7 @@ defmodule Medirepo.Hospitals.CreateTest do
       params =
         build(:hospital_params, %{"name" => "T", "email" => "andreemail.com", "password" => "123"})
 
-      response = Create.call(params)
+      response = Hospitals.create_hospital(params)
 
       expected_response = %{
         password: ["should be at least 6 character(s)"],

@@ -1,10 +1,11 @@
 defmodule Medirepo.Bulletins.UpdateTest do
   use Medirepo.DataCase, async: true
 
-  alias Medirepo.{Bulletin, Error, Hospital}
-  alias Medirepo.Bulletins.{Create, Update}
-  alias Medirepo.Hospitals.Create, as: HospCreate
-
+  alias Medirepo.Bulletins
+  alias Medirepo.Bulletins.Models.Bulletin
+  alias Medirepo.Error
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
   import Medirepo.Factory
 
   describe "call/1" do
@@ -14,51 +15,51 @@ defmodule Medirepo.Bulletins.UpdateTest do
       {:ok,
        %Hospital{
          id: hosp_id
-       }} = HospCreate.call(params_hosp)
+       }} = Hospitals.create_hospital(params_hosp)
 
       params = build(:bulletin_params, %{"hospital_id" => hosp_id})
 
       {:ok,
        %Bulletin{
          id: id
-       }} = Create.call(params)
+       }} = Bulletins.create_bulletin(params)
 
       {:ok, id: id}
     end
 
     test "when all params are valid, returns the bulletin", %{id: id} do
-      update_params = %{"id" => id, "nome" => "Andre", "obs" => "PACIENTE"}
+      update_params = %{"id" => id, "name" => "Andre", "notes" => "PACIENTE"}
 
-      response = Update.call(update_params)
+      response = Bulletins.update_bulletin(update_params)
 
       assert {:ok,
               %Bulletin{
                 id: _id,
-                nome: "Andre",
-                dt_nascimento: _dt_nasc,
-                geral: "ESTAVEL",
-                pressao: "NORMAL",
-                consciencia: "CONSCIENTE",
-                febre: "Ausente",
-                respiracao: "NORMAL",
+                name: "Andre",
+                dt_birth: _dt_nasc,
+                general: "ESTAVEL",
+                pressure: "NORMAL",
+                conscience: "CONSCIENTE",
+                fever: "Ausente",
+                respiration: "NORMAL",
                 diurese: "NORMAL",
-                obs: "PACIENTE",
-                medico: "ANTONIO CARLOS PETRUS",
-                dt_assinatura: _dt_assin,
-                atendimento: 99_999,
-                cd_paciente: 88_888,
+                notes: "PACIENTE",
+                doctor: "ANTONIO CARLOS PETRUS",
+                dt_signature: _dt_assin,
+                attendance: 99_999,
+                cd_patient: 88_888,
                 hospital_id: _hosp_id
               }} = response
     end
 
     test "when there are invalid params, returns an error", %{id: id} do
-      update_params = %{"id" => id, "nome" => "A", "obs" => "P"}
+      update_params = %{"id" => id, "name" => "A", "notes" => "P"}
 
-      response = Update.call(update_params)
+      response = Bulletins.update_bulletin(update_params)
 
       expected_response = %{
-        nome: ["should be at least 2 character(s)"],
-        obs: ["should be at least 6 character(s)"]
+        name: ["should be at least 2 character(s)"],
+        notes: ["should be at least 6 character(s)"]
       }
 
       assert {:error, %Error{status: :bad_request, result: changeset}} = response
@@ -67,7 +68,7 @@ defmodule Medirepo.Bulletins.UpdateTest do
 
     test "when an inexistent id is sent, returns an error" do
       response =
-        Update.call(%{
+        Bulletins.update_bulletin(%{
           "id" => "22d9e500-bacb-4e30-997a-239e5c2bb6b8",
           "name" => "Hospital de Teste"
         })

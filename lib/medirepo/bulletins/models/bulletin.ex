@@ -1,46 +1,46 @@
-defmodule Medirepo.Bulletin do
+defmodule Medirepo.Bulletins.Models.Bulletin do
   use Ecto.Schema
   import Ecto.Changeset
 
   alias Ecto.{Changeset, UUID}
-  alias Medirepo.Hospital
+  alias Medirepo.Hospitals.Models.Hospital
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
 
   @params [
-    :nome,
-    :dt_nascimento,
-    :geral,
-    :pressao,
-    :consciencia,
-    :febre,
-    :respiracao,
+    :name,
+    :dt_birth,
+    :general,
+    :pressure,
+    :conscience,
+    :fever,
+    :respiration,
     :diurese,
-    :obs,
-    :medico,
-    :dt_assinatura,
-    :atendimento,
-    :cd_paciente,
+    :notes,
+    :doctor,
+    :dt_signature,
+    :attendance,
+    :cd_patient,
     :hospital_id
   ]
 
   @derive {Jason.Encoder, only: [:id] ++ @params}
 
   schema "bulletins" do
-    field :nome, :string
-    field :dt_nascimento, :date
-    field :geral, :string
-    field :pressao, :string
-    field :consciencia, :string
-    field :febre, :string
-    field :respiracao, :string
+    field :name, :string
+    field :dt_birth, :date
+    field :general, :string
+    field :pressure, :string
+    field :conscience, :string
+    field :fever, :string
+    field :respiration, :string
     field :diurese, :string
-    field :obs, :string
-    field :medico, :string
-    field :dt_assinatura, :date
-    field :atendimento, :integer
-    field :cd_paciente, :integer
+    field :notes, :string
+    field :doctor, :string
+    field :dt_signature, :date
+    field :attendance, :integer
+    field :cd_patient, :integer
 
     belongs_to :hospital, Hospital
 
@@ -61,10 +61,10 @@ defmodule Medirepo.Bulletin do
     struct
     |> cast(params, fields)
     |> validate_required(fields)
-    |> validate_length(:nome, min: 2)
-    |> validate_length(:obs, min: 6)
-    |> validate_number(:atendimento, greater_than: 0)
-    |> validate_number(:cd_paciente, greater_than: 0)
+    |> validate_length(:name, min: 2)
+    |> validate_length(:notes, min: 6)
+    |> validate_number(:attendance, greater_than: 0)
+    |> validate_number(:cd_patient, greater_than: 0)
     |> foreign_key_constraint(:hospital_id)
     |> validate_uuid()
   end

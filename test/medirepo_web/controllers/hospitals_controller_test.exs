@@ -1,8 +1,9 @@
 defmodule MedirepoWeb.HospitalsControllerTest do
   use MedirepoWeb.ConnCase, async: true
 
-  alias Medirepo.Hospital
+  alias Medirepo.Hospitals.Models.Hospital
   alias MedirepoWeb.Auth.Guardian
+
   import Medirepo.Factory
 
   describe "create/2" do

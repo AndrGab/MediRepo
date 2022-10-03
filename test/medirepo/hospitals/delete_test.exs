@@ -1,22 +1,22 @@
 defmodule Medirepo.Hospitals.DeleteTest do
   use Medirepo.DataCase, async: true
 
-  alias Medirepo.Bulletins.Create, as: CreateBulletin
-  alias Medirepo.{Error, Hospital}
-  alias Medirepo.Hospitals.{Create, Delete}
-
+  alias Medirepo.Bulletins
+  alias Medirepo.Error
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
   import Medirepo.Factory
 
-  describe "call/1" do
+  describe "delete/1" do
     test "when id is valid, deletes the hospital" do
       params = build(:hospital_params)
 
       {:ok,
        %Hospital{
          id: id
-       }} = Create.call(params)
+       }} = Hospitals.create_hospital(params)
 
-      response = Delete.call(id)
+      response = Hospitals.delete_hospital(id)
 
       assert {:ok,
               %Hospital{
@@ -29,7 +29,7 @@ defmodule Medirepo.Hospitals.DeleteTest do
     end
 
     test "when an inexistent id is sent, returns an error" do
-      response = Delete.call("22d9e500-bacb-4e30-997a-239e5c2bb6b8")
+      response = Hospitals.delete_hospital("22d9e500-bacb-4e30-997a-239e5c2bb6b8")
 
       expected_response = {:error, Error.build_hospital_not_found_error()}
       assert response == expected_response
@@ -41,13 +41,13 @@ defmodule Medirepo.Hospitals.DeleteTest do
       {:ok,
        %Hospital{
          id: id
-       }} = Create.call(params)
+       }} = Hospitals.create_hospital(params)
 
       bul_params = build(:bulletin_params, %{"hospital_id" => id})
 
-      CreateBulletin.call(bul_params)
+      Bulletins.create_bulletin(bul_params)
 
-      response = Delete.call(id)
+      response = Hospitals.delete_hospital(id)
 
       expected_response = %{bulletin: ["are still associated with this entry"]}
 
