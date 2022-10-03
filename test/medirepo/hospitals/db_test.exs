@@ -22,6 +22,20 @@ defmodule Medirepo.Hospitals.DbTest do
               }} = response
     end
 
+    test "when violates the email unique constraint" do
+      insert(:hospital, email: "contato@hospital.com")
+      params = build(:hospital_params, %{"email" => "contato@hospital.com"})
+
+      response = Db.insert(params)
+
+      expected_response = %{
+        email: ["has already been taken"]
+      }
+
+      assert {:error, %Error{status: :bad_request, result: changeset}} = response
+      assert errors_on(changeset) == expected_response
+    end
+
     test "when there are invalid params, returns an error" do
       params =
         build(:hospital_params, %{"name" => "T", "email" => "andreemail.com", "password" => "123"})
