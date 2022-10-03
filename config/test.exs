@@ -22,3 +22,5 @@ config :medirepo, MedirepoWeb.Endpoint,
 config :logger, level: :warn
 
 config :pbkdf2_elixir, :rounds, 1
+
+config :medirepo, Medirepo.Mailer, adapter: Bamboo.TestAdapter

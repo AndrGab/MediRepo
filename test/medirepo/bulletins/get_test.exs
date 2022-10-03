@@ -1,9 +1,11 @@
 defmodule Medirepo.Bulletins.GetTest do
   use Medirepo.DataCase, async: true
 
-  alias Medirepo.{Bulletin, Error, Hospital}
-  alias Medirepo.Bulletins.{Create, Get}
-  alias Medirepo.Hospitals.Create, as: HospCreate
+  alias Medirepo.Bulletins
+  alias Medirepo.Bulletins.Models.Bulletin
+  alias Medirepo.Error
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
 
   import Medirepo.Factory
 
@@ -14,7 +16,7 @@ defmodule Medirepo.Bulletins.GetTest do
       {:ok,
        %Hospital{
          id: hosp_id
-       }} = HospCreate.call(params_hosp)
+       }} = Hospitals.create_hospital(params_hosp)
 
       {:ok, hosp_id: hosp_id}
     end
@@ -25,18 +27,18 @@ defmodule Medirepo.Bulletins.GetTest do
       {:ok,
        %Bulletin{
          id: id
-       }} = Create.call(params)
+       }} = Bulletins.create_bulletin(params)
 
-      response = Get.by_id(id)
+      response = Bulletins.get_bulletin_by_id(id)
 
       assert {:ok,
               %Bulletin{
-                nome: "Andre"
+                name: "Andre"
               }} = response
     end
 
     test "when an inexistent id is sent, returns an error" do
-      response = Get.by_id("22d9e500-bacb-4e30-997a-239e5c2bb6b8")
+      response = Bulletins.get_bulletin_by_id("22d9e500-bacb-4e30-997a-239e5c2bb6b8")
 
       expected_response = {:error, Error.build_bulletin_not_found_error()}
       assert response == expected_response
@@ -50,7 +52,7 @@ defmodule Medirepo.Bulletins.GetTest do
       {:ok,
        %Hospital{
          id: hosp_id
-       }} = HospCreate.call(params_hosp)
+       }} = Hospitals.create_hospital(params_hosp)
 
       {:ok, hosp_id: hosp_id}
     end
@@ -58,20 +60,20 @@ defmodule Medirepo.Bulletins.GetTest do
     test "get all bulletins from database", %{hosp_id: hosp_id} do
       params = build(:bulletin_params, %{"hospital_id" => hosp_id})
 
-      Create.call(params)
+      Bulletins.create_bulletin(params)
 
-      response = Get.get_all()
+      response = Bulletins.get_bulletins()
 
       assert {:ok,
               [
                 %Bulletin{
-                  nome: "Andre"
+                  name: "Andre"
                 }
               ]} = response
     end
 
     test "Returns error when database is empty" do
-      response = Get.get_all()
+      response = Bulletins.get_bulletins()
 
       expected_response = {:error, Error.build(:not_found, "Empty database")}
       assert response == expected_response

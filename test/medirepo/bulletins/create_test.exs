@@ -1,20 +1,22 @@
 defmodule Medirepo.Bulletins.CreateTest do
   use Medirepo.DataCase, async: true
 
-  alias Medirepo.{Bulletin, Error, Hospital}
-  alias Medirepo.Bulletins.Create
-  alias Medirepo.Hospitals.Create, as: HospCreate
+  alias Medirepo.Bulletins
+  alias Medirepo.Bulletins.Models.Bulletin
+  alias Medirepo.Error
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
 
   import Medirepo.Factory
 
-  describe "call/1" do
+  describe "create_bulletin/1" do
     setup do
       params_hosp = build(:hospital_params)
 
       {:ok,
        %Hospital{
          id: hosp_id
-       }} = HospCreate.call(params_hosp)
+       }} = Hospitals.create_hospital(params_hosp)
 
       {:ok, hosp_id: hosp_id}
     end
@@ -22,24 +24,24 @@ defmodule Medirepo.Bulletins.CreateTest do
     test "when all params are valid, returns the Bulletin", %{hosp_id: hosp_id} do
       params = build(:bulletin_params, %{"hospital_id" => hosp_id})
 
-      response = Create.call(params)
+      response = Bulletins.create_bulletin(params)
 
       assert {:ok,
               %Bulletin{
                 id: _id,
-                nome: "Andre",
-                dt_nascimento: _dt_nasc,
-                geral: "ESTAVEL",
-                pressao: "NORMAL",
-                consciencia: "CONSCIENTE",
-                febre: "Ausente",
-                respiracao: "NORMAL",
+                name: "Andre",
+                dt_birth: _dt_nasc,
+                general: "ESTAVEL",
+                pressure: "NORMAL",
+                conscience: "CONSCIENTE",
+                fever: "Ausente",
+                respiration: "NORMAL",
                 diurese: "NORMAL",
-                obs: "PACIENTE ESTA REAGINDO BEM",
-                medico: "ANTONIO CARLOS PETRUS",
-                dt_assinatura: _dt_assin,
-                atendimento: 99_999,
-                cd_paciente: 88_888,
+                notes: "PACIENTE ESTA REAGINDO BEM",
+                doctor: "ANTONIO CARLOS PETRUS",
+                dt_signature: _dt_assin,
+                attendance: 99_999,
+                cd_patient: 88_888,
                 hospital_id: _hosp_id
               }} = response
     end
@@ -47,20 +49,20 @@ defmodule Medirepo.Bulletins.CreateTest do
     test "when there are invalid params, returns an error", %{hosp_id: hosp_id} do
       params =
         build(:bulletin_params, %{
-          "nome" => "T",
-          "obs" => "123",
-          "atendimento" => 0,
-          "cd_paciente" => 0,
+          "name" => "T",
+          "notes" => "123",
+          "attendance" => 0,
+          "cd_patient" => 0,
           "hospital_id" => hosp_id
         })
 
-      response = Create.call(params)
+      response = Bulletins.create_bulletin(params)
 
       expected_response = %{
-        atendimento: ["must be greater than 0"],
-        nome: ["should be at least 2 character(s)"],
-        obs: ["should be at least 6 character(s)"],
-        cd_paciente: ["must be greater than 0"]
+        attendance: ["must be greater than 0"],
+        name: ["should be at least 2 character(s)"],
+        notes: ["should be at least 6 character(s)"],
+        cd_patient: ["must be greater than 0"]
       }
 
       assert {:error, %Error{status: :bad_request, result: changeset}} = response

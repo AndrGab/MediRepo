@@ -1,7 +1,7 @@
 defmodule MedirepoWeb.BulletinViewView do
   use MedirepoWeb, :view
 
-  alias Medirepo.Bulletin
+  alias Medirepo.Bulletins.Models.Bulletin
 
   def render("bulletin.json", %{bulletin: %Bulletin{} = bulletin}), do: %{bulletin: bulletin}
 

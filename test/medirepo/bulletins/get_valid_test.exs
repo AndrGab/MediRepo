@@ -1,20 +1,21 @@
 defmodule Medirepo.Bulletins.GetValidTest do
   use Medirepo.DataCase, async: true
 
-  alias Medirepo.{Bulletin, Hospital}
-  alias Medirepo.Bulletins.{Create, GetValid}
-  alias Medirepo.Hospitals.Create, as: HospCreate
+  alias Medirepo.Bulletins
+  alias Medirepo.Bulletins.Models.Bulletin
+  alias Medirepo.Hospitals
+  alias Medirepo.Hospitals.Models.Hospital
 
   import Medirepo.Factory
 
-  describe "call/4" do
+  describe "get_valid/4" do
     setup do
       params_hosp = build(:hospital_params)
 
       {:ok,
        %Hospital{
          id: hosp_id
-       }} = HospCreate.call(params_hosp)
+       }} = Hospitals.create_hospital(params_hosp)
 
       {:ok, hosp_id: hosp_id}
     end
@@ -24,13 +25,13 @@ defmodule Medirepo.Bulletins.GetValidTest do
 
       {:ok,
        %Bulletin{
-         dt_nascimento: dt_nasc,
-         atendimento: atend,
-         cd_paciente: cd_pac
-       }} = Create.call(params)
+         dt_birth: dt_nasc,
+         attendance: atend,
+         cd_patient: cd_pac
+       }} = Bulletins.create_bulletin(params)
 
       response =
-        GetValid.call(%{
+        Bulletins.get_valid(%{
           "login" => cd_pac,
           "password" => atend,
           "dt_nasc" => dt_nasc,
@@ -39,7 +40,7 @@ defmodule Medirepo.Bulletins.GetValidTest do
 
       assert {:ok,
               %Bulletin{
-                nome: "Andre"
+                name: "Andre"
               }} = response
     end
 
@@ -48,13 +49,13 @@ defmodule Medirepo.Bulletins.GetValidTest do
 
       {:ok,
        %Bulletin{
-         dt_nascimento: dt_nasc,
-         atendimento: atend,
-         cd_paciente: _cd_pac
-       }} = Create.call(params)
+         dt_birth: dt_nasc,
+         attendance: atend,
+         cd_patient: _cd_pac
+       }} = Bulletins.create_bulletin(params)
 
       response =
-        GetValid.call(%{
+        Bulletins.get_valid(%{
           "login" => 9999,
           "password" => atend,
           "dt_nasc" => dt_nasc,
