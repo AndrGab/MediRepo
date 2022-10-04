@@ -56,4 +56,8 @@ defmodule MedirepoWeb.Router do
       live_dashboard "/dashboard", metrics: MedirepoWeb.Telemetry
     end
   end
+
+  if Mix.env() == :dev do
+    forward "/sent_emails", Bamboo.SentEmailViewerPlug
+  end
 end

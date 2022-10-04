@@ -10,3 +10,5 @@ config :medirepo,
 
 config :medirepo,
   smtp_username: System.get_env("SMTP_USERNAME")
+
+config :medirepo, email_address: System.get_env("EMAIL_ADDRESS")
