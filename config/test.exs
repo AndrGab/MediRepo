@@ -24,3 +24,5 @@ config :logger, level: :warn
 config :pbkdf2_elixir, :rounds, 1
 
 config :medirepo, Medirepo.Mailer, adapter: Bamboo.TestAdapter
+
+config :medirepo, email_address: System.get_env("EMAIL_ADDRESS", "test@example.com")

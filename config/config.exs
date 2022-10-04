@@ -39,6 +39,8 @@ config :medirepo, Medirepo.Mailer,
   no_mx_lookups: false,
   auth: :always
 
+config :medirepo, Medirepo.Mailer, adapter: Bamboo.LocalAdapter
+
 # Configures the endpoint
 config :medirepo, MedirepoWeb.Endpoint,
   url: [host: "localhost"],
@@ -54,6 +56,8 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :medirepo, email_address: System.get_env("EMAIL_ADDRESS", "test@example.com")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
