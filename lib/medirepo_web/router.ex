@@ -59,5 +59,10 @@ defmodule MedirepoWeb.Router do
 
   if Mix.env() == :dev do
     forward "/sent_emails", Bamboo.SentEmailViewerPlug
+
+    forward "/api/graphiql",
+            Absinthe.Plug.GraphiQL,
+            schema: MedirepoWeb.Schema,
+            interface: :simple
   end
 end
