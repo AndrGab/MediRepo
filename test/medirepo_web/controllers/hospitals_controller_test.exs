@@ -48,6 +48,28 @@ defmodule MedirepoWeb.HospitalsControllerTest do
     end
   end
 
+  describe "sign_in/2" do
+    test "when all params are valid, signs in the user", %{conn: conn} do
+      hospital =
+        Medirepo.Hospitals.create_hospital(%{
+          email: "hospital@email.com",
+          name: "hospital",
+          password: "hospital"
+        })
+
+      {:ok, %{email: email, password: password}} = hospital
+
+      params = %{"email" => email, "password" => password}
+
+      assert response =
+               conn
+               |> post(Routes.hospitals_path(conn, :sign_in, params))
+               |> json_response(:ok)
+
+      assert Map.has_key?(response, "token")
+    end
+  end
+
   describe "delete/2" do
     setup %{conn: conn} do
       hospital = insert(:hospital)
