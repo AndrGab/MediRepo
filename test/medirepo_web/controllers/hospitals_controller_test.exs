@@ -6,6 +6,9 @@ defmodule MedirepoWeb.HospitalsControllerTest do
 
   import Medirepo.Factory
 
+  @invalid_login_attrs %{"email" => "hospital@wrong.com", "password" => "wrong_password"}
+  @valid_login_attrs %{"email" => "hospital@email.com", "password" => "hospital"}
+
   describe "create/2" do
     test "when all params are valid, creates the hospital", %{conn: conn} do
       params = %{
@@ -49,24 +52,31 @@ defmodule MedirepoWeb.HospitalsControllerTest do
   end
 
   describe "sign_in/2" do
+    setup %{conn: conn} do
+      Medirepo.Hospitals.create_hospital(%{
+        email: "hospital@email.com",
+        name: "hospital",
+        password: "hospital"
+      })
+
+      {:ok, conn: conn}
+    end
+
     test "when all params are valid, signs in the user", %{conn: conn} do
-      hospital =
-        Medirepo.Hospitals.create_hospital(%{
-          email: "hospital@email.com",
-          name: "hospital",
-          password: "hospital"
-        })
-
-      {:ok, %{email: email, password: password}} = hospital
-
-      params = %{"email" => email, "password" => password}
-
       assert response =
                conn
-               |> post(Routes.hospitals_path(conn, :sign_in, params))
+               |> post(Routes.hospitals_path(conn, :sign_in, @valid_login_attrs))
                |> json_response(:ok)
+               |> Map.has_key?("token")
+    end
 
-      assert Map.has_key?(response, "token")
+    test "when all params are invalid, returns an error messaage", %{conn: conn} do
+      assert response =
+               conn
+               |> post(Routes.hospitals_path(conn, :sign_in, @invalid_login_attrs))
+               |> json_response(:not_found)
+
+      assert Map.has_key?(response, "token") === false
     end
   end
 
