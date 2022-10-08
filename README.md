@@ -60,7 +60,7 @@ You can use the frontend application to create/edit bulletins manually.
 
 ### Patient's Family
 
-1. They should you our MediRepoWeb (friendly interface)
+1. They should use our [MediRepoWeb](https://medirepo.vercel.app/) (user friendly interface)
 
 ## Guide to set up locally
 
