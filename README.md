@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Logo" src="https://user-images.githubusercontent.com/57791712/119592166-52709080-bdae-11eb-8bfe-f9b0a68f4950.png">
+  <img alt="Logo" src="https://user-images.githubusercontent.com/57791712/194556500-f4291b47-325e-43b2-adb6-e224152fd327.png">
 </h1>
 
 <h3 align="center">
@@ -10,37 +10,29 @@
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Andrgab/MediRepo?color=ff69b4&logo=elixir">
-
   <a href="https://www.linkedin.com/in/andrgab/" target="_blank" rel="noopener noreferrer">
     <img alt="Made by" src="https://img.shields.io/badge/made%20by-Andre%20Gabriel-ff69b4?logo=linkedin">
   </a>
-  
-  <a href="https://codecov.io/gh/AndrGab/MediRepo" target="_blank" rel="noopener noreferrer">
+    <a href="https://codecov.io/gh/AndrGab/MediRepo" target="_blank" rel="noopener noreferrer">
     <img alt="codecov" src="https://codecov.io/gh/AndrGab/MediRepo/branch/main/graph/badge.svg?token=9WER8Z15AZ">
   </a>
-  
-  <a href="https://github.com/AndrGab/MediRepo/actions/workflows/elixir.yml" target="_blank" rel="noopener noreferrer">
+    <a href="https://github.com/AndrGab/MediRepo/actions/workflows/elixir.yml" target="_blank" rel="noopener noreferrer">
     <img alt="elixir ci" src="https://github.com/AndrGab/MediRepo/actions/workflows/elixir.yml/badge.svg?branch=main">
   </a>
-
   <img alt="GitHub" src="https://img.shields.io/github/license/Andrgab/MediRepo?color=ff69b4">
 </p>
-
-# Medirepo - Daily Medical Report API
-
-[![postman](https://img.shields.io/badge/documentation%20in-postman-orange?logo=postman)](https://documenter.getpostman.com/view/15643514/TzzBpFsL)
 
 ## MediRepo
 
 Most hospitals are restricting visitors for COVID-19 Patients.
-This is a personal project to help hospitals to share Daily Medical Reports with those patients' families.
+This is a project to help hospitals to share Daily Medical Reports with those patients' families.
 
 ## Front End
 
 Front-end (React) repository:
 https://github.com/AndrGab/medirepoWeb
 
-## LIVE DEMO
+## Live Demo
 
 Access the demo application:
 
@@ -48,59 +40,86 @@ Access the demo application:
     https://medirepo.vercel.app/
   </a>
 
-# 🎃 HacktoberFest 2022 🎃
+## How to use MediRepo
 
-If you came here for Hacktoberfest 🦇️:
+### Hospitals
 
-Celebrate [Hacktoberfest](https://hacktoberfest.com/) by getting involved in the open source community by completing some tasks in this project.
+See API documentation:
 
-This repository is open to all members of the GitHub community. Any member may contribute to this project without being a collaborator.
+[![postman](https://img.shields.io/badge/documentation%20in-postman-orange?logo=postman)](https://documenter.getpostman.com/view/15643514/TzzBpFsL)
 
-## Contributions
+1. Use you API to create an account
+2. Send new bulletins to our endpoint
+3. Share the Patient Code and Attendance Code (this is the password) to the patient's family
+
+Using the same patient Code and attendance Code, only the last medical report will be shared.
+
+With Medirepo API you can send medical reports to the application easier, set up your main application to communicate with our REST API.
+
+You can use the frontend application to create/edit bulletins manually.
+
+### Patient's Family
+
+1. They should you our MediRepoWeb (friendly interface)
+
+## Guide to set up locally
+
+1. Fork the project and then clone it to your computer
+
+```
+git clone git@github.com:<your-user-name>/medirepo.git
+```
+
+2. Install libs
+   (`.tool-versions` file has versions especifications)
+
+```
+mix deps.get
+```
+
+3. Postgres must be running
+
+4. Run migration
+
+```
+mix ecto.migrate
+```
+
+5. Use `.env-sample` file to create your environment variables, set your username/password to your SMTP server, if don't have one just create with any name. In Dev environment you can access sent emails using Bamboo viewer (localhost:4000/sent_emails).
+
+6. Run the project
+
+```
+iex -S mix phx.server
+```
+
+## Contributing
+
+See you [contributing guidelines](CONTRIBUTING.md) and our [Code of condute.](CODE_OF_CONDUCT.md)
 
 You can contribute to this project including:
 
 - new features;
 - architectural improvements;
-- including i18n functions and translating these messages into your native language;
-- increasing test coverage;
+- searching bugs;
+- adding test coverage;
+- starring the project :star:
 
 Feel free to contribute!
 
-## What is Hacktoberfest?
+## HacktoberFest
+
+If you came here for Hacktoberfest:
+
+Celebrate [Hacktoberfest](https://hacktoberfest.com/) by getting involved in the open source community by completing some tasks in this project.
+
+This repository is open to all members of the GitHub community. Any member may contribute to this project without being a collaborator.
+
+### What is Hacktoberfest?
 
 🎃 HacktoberFest is digitalocean’s annual event that encourages people to contribute to open source throughout October. Much of modern tech infrastructure—including some of digitalocean’s own products—relies on open-source projects built and maintained by passionate people who often don’t have the staff or budgets to do much more than keeping the project alive. 🎃 HacktoberFest is all about giving back to those projects, sharpening skills, and celebrating all things open source, especially the people that make open source so special.
 
 [https://hacktoberfest.com/](https://hacktoberfest.com/)
-
-## Getting started
-
-- Fork this repository (Click the Fork button in the top right of this page, click your Profile Image)
-- Clone your fork down to your local machine
-
-```markdown
-git clone https://github.com/your-username/hacktoberfest.git
-```
-
-- Create a branch
-
-```markdown
-git checkout -b branch-name
-```
-
-- Make your changes (Be creative!)
-- Commit and push
-
-```markdown
-git add .
-git commit -m 'Commit message'
-git push origin branch-name
-```
-
-- Create a new pull request from your forked repository (Click the `New Pull Request` button located at the top of your repo)
-- Wait for your PR review and merge approval!
-
-- **Please STAR this repository** if you had fun!
 
 ## Screenshots
 
@@ -110,14 +129,20 @@ git push origin branch-name
 
 If you have any feedback, please reach out to me at andrgab@gmail.com
 
-## Authors
+## Author
 
-Made with :purple_heart: by [@andrgab](https://www.github.com/andrgab)
+Made with :purple_heart:
+
+ <a href="https://www.linkedin.com/in/andrgab/" target="_blank" rel="noopener noreferrer">
+    <img alt="Made by" src="https://img.shields.io/badge/made%20by-Andre%20Gabriel-ff69b4?logo=linkedin">
+ </a>
 
 ## Contributors
 
 <a href="https://github.com/andrgab/medirepo/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=andrgab/medirepo" />
 </a>
+
+## Credits
 
 Contributors image made with [contrib.rocks](https://contrib.rocks).
