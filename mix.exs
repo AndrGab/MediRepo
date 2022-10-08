@@ -58,7 +58,9 @@ defmodule Medirepo.MixProject do
       {:bamboo_smtp, "~> 4.0.1"},
       {:excoveralls, "~> 0.10", only: :test},
       {:cors_plug, "~> 2.0"},
-      {:ex_machina, "~> 2.7.0", only: :test}
+      {:ex_machina, "~> 2.7.0", only: :test},
+      {:absinthe, "~> 1.7"},
+      {:absinthe_plug, "~> 1.5"}
     ]
   end
 

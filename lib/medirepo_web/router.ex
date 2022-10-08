@@ -41,6 +41,19 @@ defmodule MedirepoWeb.Router do
     resources "/bulletins", BulletinsController, except: [:index, :new, :edit]
   end
 
+  scope "/api" do
+    pipe_through [:api]
+
+    forward "/graphql",
+    Absinthe.Plug,
+    schema: MedirepoWeb.Schema
+
+    forward "/graphiql",
+            Absinthe.Plug.GraphiQL,
+            schema: MedirepoWeb.Schema,
+            interface: :simple
+  end
+
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put
@@ -59,5 +72,6 @@ defmodule MedirepoWeb.Router do
 
   if Mix.env() == :dev do
     forward "/sent_emails", Bamboo.SentEmailViewerPlug
+
   end
 end
