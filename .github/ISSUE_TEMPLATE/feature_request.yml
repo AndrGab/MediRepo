@@ -52,7 +52,7 @@ body:
       label: "🏢 Have you read the Contributing Guidelines?"
       options:
         - label: "I have read the [Contributing Guidelines](https://github.com/AndrGab/MediRepo/blob/main/CONTRIBUTING.md)"
-          required: true 
+          required: true
  - type: checkboxes
     id: read-code-of-conduct
     attributes:
@@ -60,7 +60,7 @@ body:
       description: This project has a Code of Conduct that all participants are expected to understand and follow.
       options:
         - label: "I have read the [Code of Condute](https://github.com/AndrGab/MediRepo/blob/main/CODE_OF_CONDUCT.md)"
-          required: true 
+          required: true
   - type: dropdown
     id: willing-to-submit-pr
     attributes:
