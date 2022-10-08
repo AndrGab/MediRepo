@@ -47,24 +47,16 @@ body:
         - label: "I checked and didn't find similar issue"
           required: true
   - type: checkboxes
-    id: read-contributing
-    attributes:
-      label: "🏢 Have you read the Contributing Guidelines?"
-      options:
-        - label: "I have read the [Contributing Guidelines](https://github.com/AndrGab/MediRepo/blob/main/CONTRIBUTING.md)"
-          required: true
- - type: checkboxes
     id: read-code-of-conduct
     attributes:
-      label: "🏢 Have you read the Code of Condute?"
-      description: This project has a Code of Conduct that all participants are expected to understand and follow.
+      label: "🏢 Have you read the Code of Conduct?"
       options:
-        - label: "I have read the [Code of Condute](https://github.com/AndrGab/MediRepo/blob/main/CODE_OF_CONDUCT.md)"
+        - label: "I have read the [Code of Conduct](https://github.com/andrgab/medirepo/blob/main/CODE_OF_CONDUCT.md)"
           required: true
   - type: dropdown
     id: willing-to-submit-pr
     attributes:
       label: Are you willing to submit PR?
-      description: This is absolutely not required, but we are happy to guide you in the contribution process.
+      description: This is absolutely not required, but we are happy to guide you in the contribution process. Find us in help-needed channel on [Discord](https://discord.gg/9wcGSf22PM)!
       options:
         - "Yes I am willing to submit a PR!"
