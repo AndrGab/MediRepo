@@ -5,8 +5,7 @@ labels: [feature]
 body:
   - type: markdown
     attributes:
-      value: |
-        We value your time and efforts to submit this Feature request form. 🙏
+      value: We value your time and efforts to submit this Feature request form. 🙏
   - type: textarea
     id: feature-description
     validations:
