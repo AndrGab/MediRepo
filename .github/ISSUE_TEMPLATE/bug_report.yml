@@ -5,11 +5,7 @@ labels: ["type: bug"]
 body:
   - type: markdown
     attributes:
-      value: |
-        ** We value your time and effort to submit this bug report. 🙏
-        
-        * Check to make sure someone hasn't already opened a similar [issue](https://github.com/AndrGab/MediRepo/issues).
-
+      value: We value your time and effort to submit this bug report. 🙏
   - type: textarea
     id: description
     validations:
@@ -59,14 +55,6 @@ body:
         - Something else
     validations:
       required: true
-  - type: input
-    id: react-version
-    validations:
-      required: true
-    attributes:
-      label: "🤖 React Version"
-      description: >
-        What React version are you using?
   - type: textarea
     id: additional-context
     validations:
@@ -87,15 +75,15 @@ body:
     attributes:
       label: "🏢 Have you read the Contributing Guidelines?"
       options:
-        - label: "I have read the [Contributing Guidelines](https://github.com/AndrGab/MediRepo/blob/main/CONTRIBUTING.md)"
-          required: true 
- - type: checkboxes
+        - label: "I have read the [Contributing Guidelines](https://github.com/andrgab/medirepo/blob/main/CONTRIBUTING.md)"
+          required: true
+  - type: checkboxes
     id: read-code-of-conduct
     attributes:
-      label: "🏢 Have you read the Code of Condute?"
+      label: "🏢 Have you read the Code of condute"
       options:
-        - label: "I have read the [Code of Condute](https://github.com/AndrGab/MediRepo/blob/main/CODE_OF_CONDUCT.md)"
-          required: true 
+        - label: "I have read the [Code of condute](https://github.com/andrgab/medirepo/blob/main/CODE_OF_CONDUCT.md)"
+          required: true
   - type: dropdown
     attributes:
       label: Are you willing to submit PR?
