@@ -1,5 +1,5 @@
 defmodule MedirepoWeb.Schema.Bulletin do
-use Absinthe.Schema.Notation
+  use Absinthe.Schema.Notation
 
   object :bulletin do
     field :id, :id

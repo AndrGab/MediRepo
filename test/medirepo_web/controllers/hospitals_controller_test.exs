@@ -63,20 +63,21 @@ defmodule MedirepoWeb.HospitalsControllerTest do
     end
 
     test "when all params are valid, signs in the user", %{conn: conn} do
-      assert response =
-               conn
-               |> post(Routes.hospitals_path(conn, :sign_in, @valid_login_attrs))
-               |> json_response(:ok)
-               |> Map.has_key?("token")
+      response =
+        conn
+        |> post(Routes.hospitals_path(conn, :sign_in, @valid_login_attrs))
+        |> json_response(:ok)
+
+      assert Map.has_key?(response, "token")
     end
 
-    test "when all params are invalid, returns an error messaage", %{conn: conn} do
-      assert response =
-               conn
-               |> post(Routes.hospitals_path(conn, :sign_in, @invalid_login_attrs))
-               |> json_response(:not_found)
+    test "when all params are invalid, returns an error message", %{conn: conn} do
+      response =
+        conn
+        |> post(Routes.hospitals_path(conn, :sign_in, @invalid_login_attrs))
+        |> json_response(:not_found)
 
-      assert Map.has_key?(response, "token") === false
+      refute Map.has_key?(response, "token")
     end
   end
 
