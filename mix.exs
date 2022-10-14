@@ -16,7 +16,8 @@ defmodule Medirepo.MixProject do
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.post": :test,
-        "coveralls.html": :test
+        "coveralls.html": :test,
+        "test.watch": :test
       ]
     ]
   end
@@ -60,7 +61,9 @@ defmodule Medirepo.MixProject do
       {:cors_plug, "~> 2.0"},
       {:ex_machina, "~> 2.7.0", only: :test},
       {:absinthe, "~> 1.7"},
-      {:absinthe_plug, "~> 1.5"}
+      {:absinthe_plug, "~> 1.5"},
+      {:faker, "~> 0.17", only: :test},
+      {:mix_test_watch, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 

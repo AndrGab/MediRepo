@@ -83,11 +83,7 @@ defmodule MedirepoWeb.HospitalsControllerTest do
 
   describe "delete/2" do
     setup %{conn: conn} do
-      hospital = insert(:hospital)
-      %Hospital{id: id} = hospital
-      {:ok, token, _claims} = Guardian.encode_and_sign(id, %{ate: "000"})
-      conn = put_req_header(conn, "authorization", "Bearer #{token}")
-      {:ok, conn: conn, id: id}
+      setup_hospital(conn)
     end
 
     test "when there is a hospital with the given id, deletes the hospital", %{
@@ -105,14 +101,15 @@ defmodule MedirepoWeb.HospitalsControllerTest do
 
   describe "index/2" do
     setup %{conn: conn} do
-      hospital = insert(:hospital)
-      %Hospital{id: id} = hospital
-      {:ok, token, _claims} = Guardian.encode_and_sign(id, %{ate: "000"})
-      conn = put_req_header(conn, "authorization", "Bearer #{token}")
-      {:ok, conn: conn, id: id}
+      setup_hospital(conn)
     end
 
-    test "Shows the logged hospital", %{conn: conn, id: id} do
+    test "Shows the logged hospital", %{
+      conn: conn,
+      id: id,
+      hospital_name: hospital_name,
+      hospital_email: hospital_email
+    } do
       response =
         conn
         |> get(Routes.hospitals_path(conn, :index))
@@ -121,8 +118,8 @@ defmodule MedirepoWeb.HospitalsControllerTest do
       assert response == %{
                "hospital" => %{
                  "id" => id,
-                 "name" => "Hospital das Americas",
-                 "email" => "contato@hospital.com"
+                 "name" => hospital_name,
+                 "email" => hospital_email
                }
              }
     end
@@ -130,16 +127,13 @@ defmodule MedirepoWeb.HospitalsControllerTest do
 
   describe "update/2" do
     setup %{conn: conn} do
-      hospital = insert(:hospital)
-      %Hospital{id: id} = hospital
-      {:ok, token, _claims} = Guardian.encode_and_sign(id, %{ate: "000"})
-      conn = put_req_header(conn, "authorization", "Bearer #{token}")
-      {:ok, conn: conn, id: id}
+      setup_hospital(conn)
     end
 
     test "when there is a hospital with the given id, updates the hospital", %{
       conn: conn,
-      id: id
+      id: id,
+      hospital_email: hospital_email
     } do
       params = %{id: id, name: "Teste", password: "123456"}
 
@@ -150,9 +144,9 @@ defmodule MedirepoWeb.HospitalsControllerTest do
 
       assert response == %{
                "hospital" => %{
-                 "id" => "910a2168-b747-4c35-9c5e-74912c89213f",
+                 "id" => id,
                  "name" => "Teste",
-                 "email" => "contato@hospital.com"
+                 "email" => hospital_email
                }
              }
     end
@@ -160,12 +154,13 @@ defmodule MedirepoWeb.HospitalsControllerTest do
 
   describe "show_list/2" do
     setup %{conn: conn} do
-      insert(:hospital)
-      {:ok, conn: conn}
+      setup_hospital(conn)
     end
 
     test "list all hospitals", %{
-      conn: conn
+      conn: conn,
+      id: id,
+      hospital_name: hospital_name
     } do
       response =
         conn
@@ -175,12 +170,19 @@ defmodule MedirepoWeb.HospitalsControllerTest do
       assert response == %{
                "hospital" => [
                  %{
-                   "id" => "910a2168-b747-4c35-9c5e-74912c89213f",
-                   "name" => "Hospital das Americas",
+                   "id" => id,
+                   "name" => hospital_name,
                    "email" => nil
                  }
                ]
              }
     end
+  end
+
+  defp setup_hospital(conn) do
+    %Hospital{id: id, name: hospital_name, email: hospital_email} = insert(:hospital)
+    {:ok, token, _claims} = Guardian.encode_and_sign(id, %{ate: "000"})
+    conn = put_req_header(conn, "authorization", "Bearer #{token}")
+    {:ok, conn: conn, id: id, hospital_name: hospital_name, hospital_email: hospital_email}
   end
 end

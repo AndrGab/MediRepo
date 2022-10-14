@@ -15,10 +15,10 @@ defmodule Medirepo.Factory do
 
   def hospital_factory do
     %Hospital{
-      email: "contato@hospital.com",
+      email: Faker.Internet.email(),
       password: "123456",
-      name: "Hospital das Americas",
-      id: "910a2168-b747-4c35-9c5e-74912c89213f"
+      name: Faker.Company.name(),
+      id: Faker.UUID.v4()
     }
   end
 
