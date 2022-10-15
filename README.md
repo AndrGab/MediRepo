@@ -84,10 +84,15 @@ mix deps.get
 ```
 mix ecto.migrate
 ```
+5. Run seeds file.
 
-5. Use `.env-sample` file to create your environment variables, set your username/password to your SMTP server, if don't have one just create with any name. In Dev environment you can access sent emails using Bamboo viewer (localhost:4000/sent_emails).
+```
+mix run priv/repo/seeds.exs
+```
 
-6. Run the project
+6. Use `.env-sample` file to create your environment variables, set your username/password to your SMTP server, if don't have one just create with any name. In Dev environment you can access sent emails using Bamboo viewer (localhost:4000/sent_emails).
+
+7. Run the project
 
 ```
 iex -S mix phx.server

@@ -76,13 +76,7 @@ defmodule MedirepoWeb.BulletinsControllerTest do
 
   describe "delete/2" do
     setup %{conn: conn} do
-      hospital = insert(:hospital)
-      %Hospital{id: id} = hospital
-      {:ok, token, _claims} = Guardian.encode_and_sign(id, %{ate: "000"})
-      conn = put_req_header(conn, "authorization", "Bearer #{token}")
-      bulletin = insert(:bulletin, hospital_id: id)
-      %Bulletin{id: bul_id} = bulletin
-      {:ok, conn: conn, id: bul_id}
+      setup_bulletin(conn)
     end
 
     test "when there is a bulletin with the given id, deletes the bulletin", %{
@@ -100,18 +94,13 @@ defmodule MedirepoWeb.BulletinsControllerTest do
 
   describe "update/2" do
     setup %{conn: conn} do
-      hospital = insert(:hospital)
-      %Hospital{id: id} = hospital
-      {:ok, token, _claims} = Guardian.encode_and_sign(id, %{ate: "000"})
-      conn = put_req_header(conn, "authorization", "Bearer #{token}")
-      bulletin = insert(:bulletin, hospital_id: id)
-      %Bulletin{id: bul_id} = bulletin
-      {:ok, conn: conn, id: bul_id}
+      setup_bulletin(conn)
     end
 
     test "when there is a hospital with the given id, updates the hospital", %{
       conn: conn,
-      id: id
+      id: id,
+      hospital_id: hospital_id
     } do
       params = %Bulletin{id: id, name: "Teste", notes: "123456"}
 
@@ -130,7 +119,7 @@ defmodule MedirepoWeb.BulletinsControllerTest do
                  "dt_birth" => "1977-01-28",
                  "fever" => "Ausente",
                  "general" => "ESTAVEL",
-                 "hospital_id" => "910a2168-b747-4c35-9c5e-74912c89213f",
+                 "hospital_id" => hospital_id,
                  "id" => "caf4c454-3b3e-4426-b754-80eb69a68cee",
                  "doctor" => "ANTONIO CARLOS PETRUS",
                  "name" => "Andre",
@@ -144,18 +133,13 @@ defmodule MedirepoWeb.BulletinsControllerTest do
 
   describe "show/2" do
     setup %{conn: conn} do
-      hospital = insert(:hospital)
-      %Hospital{id: id} = hospital
-      {:ok, token, _claims} = Guardian.encode_and_sign(id, %{ate: "000"})
-      conn = put_req_header(conn, "authorization", "Bearer #{token}")
-      bulletin = insert(:bulletin, hospital_id: id)
-      %Bulletin{id: bul_id} = bulletin
-      {:ok, conn: conn, id: bul_id}
+      setup_bulletin(conn)
     end
 
     test "when there is a hospital with the given id, shows the hospital", %{
       conn: conn,
-      id: id
+      id: id,
+      hospital_id: hospital_id
     } do
       params = %Bulletin{id: id}
 
@@ -174,7 +158,7 @@ defmodule MedirepoWeb.BulletinsControllerTest do
                  "dt_birth" => "1977-01-28",
                  "fever" => "Ausente",
                  "general" => "ESTAVEL",
-                 "hospital_id" => "910a2168-b747-4c35-9c5e-74912c89213f",
+                 "hospital_id" => hospital_id,
                  "id" => "caf4c454-3b3e-4426-b754-80eb69a68cee",
                  "doctor" => "ANTONIO CARLOS PETRUS",
                  "name" => "Andre",
@@ -210,5 +194,15 @@ defmodule MedirepoWeb.BulletinsControllerTest do
 
       assert response == %{"message" => "Invalid UUID"}
     end
+  end
+
+  defp setup_bulletin(conn) do
+    %Hospital{id: hospital_id} = insert(:hospital)
+    {:ok, token, _claims} = Guardian.encode_and_sign(hospital_id, %{ate: "000"})
+    conn = put_req_header(conn, "authorization", "Bearer #{token}")
+    bulletin = insert(:bulletin, hospital_id: hospital_id)
+    %Bulletin{id: bul_id} = bulletin
+
+    {:ok, conn: conn, id: bul_id, hospital_id: hospital_id}
   end
 end
