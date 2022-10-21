@@ -1,7 +1,7 @@
 defmodule MedirepoWeb.Resolvers.Hospital do
-  alias Medirepo.Hospitals
   alias Ecto.Changeset
   alias Medirepo.Error
+  alias Medirepo.Hospitals
 
   def get_hospitals(_parent, _args, _resolution) do
     case Hospitals.get_hospitals() do
@@ -14,7 +14,9 @@ defmodule MedirepoWeb.Resolvers.Hospital do
     case Hospitals.create_hospital(params) do
       {:error, %Error{result: changeset}} ->
         {:error, message: "Could not create a hospital", details: error_details(changeset)}
-      {:ok, result} -> {:ok, result}
+
+      {:ok, result} ->
+        {:ok, result}
     end
   end
 

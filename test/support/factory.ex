@@ -6,8 +6,8 @@ defmodule Medirepo.Factory do
 
   def hospital_params_factory do
     %{
-      "name" => "Hospital das Americas",
-      "email" => "contato@hospital.com",
+      "name" => Faker.Company.name(),
+      "email" => Faker.Internet.email(),
       "password" => "123456",
       "password_reset_token" => "abcdef"
     }

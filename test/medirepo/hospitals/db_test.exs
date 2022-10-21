@@ -10,14 +10,14 @@ defmodule Medirepo.Hospitals.DbTest do
 
   describe "insert/1" do
     test "when all params are valid, returns the hospital" do
-      params = build(:hospital_params)
+      %{"name" => name, "email" => email} = params = build(:hospital_params)
       response = Db.insert(params)
 
       assert {:ok,
               %Hospital{
                 id: _id,
-                name: "Hospital das Americas",
-                email: "contato@hospital.com",
+                name: ^name,
+                email: ^email,
                 password: "123456"
               }} = response
     end
@@ -55,7 +55,7 @@ defmodule Medirepo.Hospitals.DbTest do
 
   describe "delete/1" do
     test "when id is valid, deletes the hospital" do
-      params = build(:hospital_params)
+      %{"name" => name, "email" => email} = params = build(:hospital_params)
 
       {:ok,
        %Hospital{
@@ -66,8 +66,8 @@ defmodule Medirepo.Hospitals.DbTest do
 
       assert {:ok,
               %Hospital{
-                name: "Hospital das Americas",
-                email: "contato@hospital.com",
+                name: ^name,
+                email: ^email,
                 id: _id,
                 inserted_at: _inserted,
                 updated_at: _updated
@@ -104,7 +104,7 @@ defmodule Medirepo.Hospitals.DbTest do
 
   describe "get_by_id/1" do
     test "when id is valid, returns the hospital" do
-      params = build(:hospital_params)
+      %{"name" => name, "email" => email} = params = build(:hospital_params)
 
       {:ok,
        %Hospital{
@@ -115,8 +115,8 @@ defmodule Medirepo.Hospitals.DbTest do
 
       assert {:ok,
               %Hospital{
-                email: "contato@hospital.com",
-                name: "Hospital das Americas",
+                email: ^email,
+                name: ^name,
                 id: _id,
                 inserted_at: _inserted,
                 updated_at: _updated
@@ -137,15 +137,16 @@ defmodule Medirepo.Hospitals.DbTest do
 
       {:ok,
        %Hospital{
-         email: email
+         email: email,
+         name: name
        }} = Db.insert(params)
 
       response = Db.get_by_email(%{"email" => email})
 
       assert {:ok,
               %Hospital{
-                email: "contato@hospital.com",
-                name: "Hospital das Americas",
+                email: ^email,
+                name: ^name,
                 id: _id,
                 inserted_at: _inserted,
                 updated_at: _updated
@@ -169,7 +170,7 @@ defmodule Medirepo.Hospitals.DbTest do
 
   describe "get_all/0" do
     test "get all hospital from database" do
-      params = build(:hospital_params)
+      %{"name" => name} = params = build(:hospital_params)
       Db.insert(params)
 
       response = Db.get_all()
@@ -178,7 +179,7 @@ defmodule Medirepo.Hospitals.DbTest do
               [
                 %Hospital{
                   email: nil,
-                  name: "Hospital das Americas",
+                  name: ^name,
                   id: _id,
                   inserted_at: _inserted,
                   updated_at: _updated
@@ -196,7 +197,7 @@ defmodule Medirepo.Hospitals.DbTest do
 
   describe "update/1" do
     test "when all params are valid, returns the hospital" do
-      params = build(:hospital_params)
+      %{"email" => email} = params = build(:hospital_params)
 
       {:ok,
        %Hospital{
@@ -210,7 +211,7 @@ defmodule Medirepo.Hospitals.DbTest do
       assert {:ok,
               %Hospital{
                 name: "Hospital de Teste",
-                email: "contato@hospital.com",
+                email: ^email,
                 id: _id,
                 inserted_at: _inserted,
                 updated_at: _updated
@@ -231,7 +232,7 @@ defmodule Medirepo.Hospitals.DbTest do
 
   describe "reset_pass/1" do
     test "when id is correct, generates a token for reseting email" do
-      params = build(:hospital_params)
+      %{"name" => name, "email" => email} = params = build(:hospital_params)
 
       {:ok,
        %Hospital{
@@ -248,8 +249,8 @@ defmodule Medirepo.Hospitals.DbTest do
 
       assert {:ok,
               %Hospital{
-                name: "Hospital das Americas",
-                email: "contato@hospital.com",
+                name: ^name,
+                email: ^email,
                 id: _id
               }} = response
     end
