@@ -8,11 +8,11 @@ defmodule Medirepo.HospitalTest do
 
   describe "changeset/2" do
     test "when all params are valid, returns a valid changeset" do
-      params = build(:hospital_params)
+      %{"name" => name} = params = build(:hospital_params)
 
       response = Hospital.changeset(params)
 
-      assert %Changeset{changes: %{name: "Hospital das Americas"}, valid?: true} = response
+      assert %Changeset{changes: %{name: ^name}, valid?: true} = response
     end
 
     test "when updating a changeset, returns a valid changeset with the given changes" do
