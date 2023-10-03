@@ -22,74 +22,66 @@
   <img alt="GitHub" src="https://img.shields.io/github/license/Andrgab/MediRepo?color=ff69b4">
 </p>
 
-## MediRepo
+## Introduction
 
-Most hospitals are restricting visitors for COVID-19 Patients.
-This is a project to help hospitals to share Daily Medical Reports with those patients' families.
+MediRepo is an Elixir/Phoenix API designed to facilitate communication between hospitals and patients' families by sharing Daily Medical Reports. In the midst of COVID-19 restrictions on hospital visits, this project aims to bridge the gap and provide essential medical information to concerned families.
 
 ## Front End
 
-Front-end (React) repository:
-https://github.com/AndrGab/medirepoWeb
+For the corresponding front-end (React) repository, visit:
+[MediRepo Web Repository](https://github.com/AndrGab/medirepoWeb)
 
 ## Live Demo
 
-Access the demo application:
+Experience the live demo application by visiting:
+[MediRepo Demo](https://medirepo.vercel.app/)
 
-<a href="https://medirepo.vercel.app/" target="_blank" rel="noopener noreferrer">
-    https://medirepo.vercel.app/
-  </a>
+## How to Use MediRepo
 
-## How to use MediRepo
+### For Hospitals
 
-### Hospitals
+#### API Documentation
 
-See API documentation:
+Access our comprehensive API documentation on Postman:
+[![Postman Documentation](https://img.shields.io/badge/documentation%20in-postman-orange?logo=postman)](https://documenter.getpostman.com/view/15643514/TzzBpFsL)
 
-[![postman](https://img.shields.io/badge/documentation%20in-postman-orange?logo=postman)](https://documenter.getpostman.com/view/15643514/TzzBpFsL)
+1. Create a hospital account using our API.
+2. Utilize our endpoint to submit daily medical bulletins.
+3. Share the Patient Code and Attendance Code (password) with the patient's family.
 
-1. Use you API to create an account
-2. Send new bulletins to our endpoint
-3. Share the Patient Code and Attendance Code (this is the password) to the patient's family
+By using the same Patient Code and Attendance Code, only the latest medical report will be shared automatically. Integrate MediRepo API with your main application to streamline medical report submission, or use the web application for manual bulletin creation and editing.
 
-Using the same patient Code and attendance Code, only the last medical report will be shared.
+### For Patients' Families
 
-With Medirepo API you can send medical reports to the application easier, set up your main application to communicate with our REST API.
+1. Access the user-friendly interface of [MediRepo Web](https://medirepo.vercel.app/) to view medical reports.
 
-You can use the frontend application to create/edit bulletins manually.
+## Local Setup Guide
 
-### Patient's Family
+1. Fork the project and clone it to your local computer:
 
-1. They should use our [MediRepoWeb](https://medirepo.vercel.app/) (user friendly interface)
-
-## Guide to set up locally
-
-1. Fork the project and then clone it to your computer
-
-```
+```bash
 git clone git@github.com:<your-user-name>/medirepo.git
 ```
 
-2. Install libs
-   (`.tool-versions` file has versions especifications)
+2. Install required libraries (refer to `.tool-versions` file for version specifications):
 
-```
+```bash
 mix deps.get
 ```
 
-3. Postgres must be running
+3. Ensure that Postgres is running.
 
-4. Setup Database
+4. Set up the database:
 
-```
+```bash
 mix ecto.setup
 ```
 
-5. Use `.env-sample` file to create your environment variables, set your username/password to your SMTP server, if don't have one just create with any name. In Dev environment you can access sent emails using Bamboo viewer (localhost:4000/sent_emails).
+5. Use the `.env-sample` file to create your environment variables. Configure your SMTP server username and password. If you don't have an SMTP server, you can create one with any name. In the development environment, you can access sent emails using Bamboo viewer (localhost:4000/sent_emails).
 
-6. Run the project
+6. Run the project:
 
-```
+```bash
 iex -S mix phx.server
 ```
 
@@ -123,7 +115,8 @@ This repository is open to all members of the GitHub community. Any member may c
 
 ## Screenshots
 
-![bulletin2](https://user-images.githubusercontent.com/57791712/119598328-1f7fca00-bdb9-11eb-87a9-7b4ee4c35ee0.gif)
+![Bulletin Example](https://user-images.githubusercontent.com/57791712/119598328-1f7fca00-bdb9-11eb-87a9-7b4ee4c35ee0.gif)
+
 
 ## Feedback
 
