@@ -1,9 +1,9 @@
-use Mix.Config
+import Config
 
 # Configure your database
 config :medirepo, Medirepo.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "solfacil",
+  password: "solfacil",
   database: "medirepo_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
