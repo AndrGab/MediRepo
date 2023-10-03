@@ -1,7 +1,7 @@
 name: Elixir CI
 
 on:
-  push:avzz
+  push:
     branches: [main]
   pull_request:
     branches: [main]
@@ -88,4 +88,3 @@ jobs:
           GIGALIXIR_APP: elderly-joyous-pangolin # Feel free to also put this in your secrets
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           MIGRATIONS: false
-
