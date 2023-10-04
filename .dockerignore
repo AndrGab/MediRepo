@@ -1,0 +1,13 @@
+# Elixir folders
+/_build/
+/deps/
+/.elixir_ls/
+
+# Git files
+/**/.git
+/.github/
+
+# Local dev env files
+/.direnv/
+/.postgres/
+

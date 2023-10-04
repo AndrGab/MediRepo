@@ -3,6 +3,8 @@ defmodule Medirepo.Email do
 
   alias Medirepo.Mailer
 
+  @email_address Application.compile_env(:medirepo, :email_address, "contact@medirepo.com")
+
   def send_welcome_email(name, email, id) do
     welcome_email(name, email, id)
     |> Mailer.deliver_later()
@@ -11,7 +13,7 @@ defmodule Medirepo.Email do
   defp welcome_email(name, email, _id) do
     new_email(
       to: email,
-      from: get_email_address(),
+      from: @email_address,
       subject: "Welcome to MediRepo",
       text_body: "Hello, #{name}\n
         Thank you for joining us!\n
@@ -28,16 +30,12 @@ defmodule Medirepo.Email do
   defp reset_email(email, id, token) do
     new_email(
       to: email,
-      from: get_email_address(),
+      from: @email_address,
       subject: "Reset password token",
       text_body: "Use the link below to log into the platform and update your password:\n
         https://medirepo.vercel.app/hospitals/fastlogin/#{id}/#{token} \n
         This access link expires in 10 minutes.\n
         Thank you."
     )
-  end
-
-  defp get_email_address do
-    Application.get_env(:medirepo, :email_address, "contact@medirepo.com")
   end
 end
