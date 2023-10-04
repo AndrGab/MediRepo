@@ -41,3 +41,5 @@ medirepo-*.tar
 /.nix-hex/
 /.nix-mix/
 /.direnv/
+
+.env
