@@ -1,148 +1,152 @@
+Here's an improved version with a refined structure, enhanced readability, and consistent styling:
+
+---
+
 <h1 align="center">
-  <img alt="Logo" src="https://user-images.githubusercontent.com/57791712/194556500-f4291b47-325e-43b2-adb6-e224152fd327.png">
+  <img alt="MediRepo Logo" src="https://user-images.githubusercontent.com/57791712/194556500-f4291b47-325e-43b2-adb6-e224152fd327.png">
 </h1>
 
 <h3 align="center">
   Elixir/Phoenix API for Daily Medical Reports
 </h3>
 
-<p align="center">Making communication easier for Hospitals and Patients' Families</p>
+<p align="center">Streamlining communication between Hospitals and Patients' Families</p>
 
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Andrgab/MediRepo?color=ff69b4&logo=elixir">
   <a href="https://www.linkedin.com/in/andrgab/" target="_blank" rel="noopener noreferrer">
     <img alt="Made by" src="https://img.shields.io/badge/made%20by-Andre%20Gabriel-ff69b4?logo=linkedin">
   </a>
-    <a href="https://codecov.io/gh/AndrGab/MediRepo" target="_blank" rel="noopener noreferrer">
-    <img alt="codecov" src="https://codecov.io/gh/AndrGab/MediRepo/branch/main/graph/badge.svg?token=9WER8Z15AZ">
+  <a href="https://codecov.io/gh/AndrGab/MediRepo" target="_blank" rel="noopener noreferrer">
+    <img alt="Coverage" src="https://codecov.io/gh/AndrGab/MediRepo/branch/main/graph/badge.svg?token=9WER8Z15AZ">
   </a>
-    <a href="https://github.com/AndrGab/MediRepo/actions/workflows/elixir.yml" target="_blank" rel="noopener noreferrer">
-    <img alt="elixir ci" src="https://github.com/AndrGab/MediRepo/actions/workflows/elixir.yml/badge.svg?branch=main">
+  <a href="https://github.com/AndrGab/MediRepo/actions/workflows/elixir.yml" target="_blank" rel="noopener noreferrer">
+    <img alt="CI Status" src="https://github.com/AndrGab/MediRepo/actions/workflows/elixir.yml/badge.svg?branch=main">
   </a>
-  <img alt="GitHub" src="https://img.shields.io/github/license/Andrgab/MediRepo?color=ff69b4">
+  <img alt="License" src="https://img.shields.io/github/license/Andrgab/MediRepo?color=ff69b4">
 </p>
 
-## MediRepo
+---
 
-Most hospitals are restricting visitors for COVID-19 Patients.
-This is a project to help hospitals to share Daily Medical Reports with those patients' families.
+## 🚀 Introduction
 
-## Front End
+**MediRepo** is an Elixir/Phoenix API that simplifies communication between hospitals and families by sharing daily medical reports. Especially useful during COVID-19 restrictions on hospital visits, it helps keep families informed while reducing the stress of uncertainty.
 
-Front-end (React) repository:
-https://github.com/AndrGab/medirepoWeb
+## 💻 Front End
 
-## Live Demo
+Check out the corresponding front-end built with React:
+**[MediRepo Web Repository](https://github.com/AndrGab/medirepoWeb)**
 
-Access the demo application:
+## 🌐 Live Demo
 
-<a href="https://medirepo.vercel.app/" target="_blank" rel="noopener noreferrer">
-    https://medirepo.vercel.app/
-  </a>
+Explore the live demo of MediRepo:
+**[MediRepo Demo](https://medirepo.vercel.app/)**
 
-## How to use MediRepo
+---
 
-### Hospitals
+## 📚 How to Use MediRepo
 
-See API documentation:
+### 🏥 For Hospitals
 
-[![postman](https://img.shields.io/badge/documentation%20in-postman-orange?logo=postman)](https://documenter.getpostman.com/view/15643514/TzzBpFsL)
+**API Documentation:** Access our detailed API documentation on Postman:
+[![Postman Documentation](https://img.shields.io/badge/documentation%20in-postman-orange?logo=postman)](https://documenter.getpostman.com/view/15643514/TzzBpFsL)
 
-1. Use you API to create an account
-2. Send new bulletins to our endpoint
-3. Share the Patient Code and Attendance Code (this is the password) to the patient's family
+1. **Register a hospital account** through the API.
+2. **Submit daily medical reports** using our endpoints.
+3. Share the **Patient Code** and **Attendance Code** (password) with the patient's family.
 
-Using the same patient Code and attendance Code, only the last medical report will be shared.
+Families can access the latest report using these codes, ensuring secure and straightforward communication. You can integrate MediRepo API with your main hospital system for automated updates, or use the web interface for manual entry.
 
-With Medirepo API you can send medical reports to the application easier, set up your main application to communicate with our REST API.
+### 👨‍👩‍👧‍👦 For Patients' Families
 
-You can use the frontend application to create/edit bulletins manually.
+Use our intuitive interface at **[MediRepo Web](https://medirepo.vercel.app/)** to view the medical reports shared by the hospital.
 
-### Patient's Family
+---
 
-1. They should use our [MediRepoWeb](https://medirepo.vercel.app/) (user friendly interface)
+## ⚙️ Local Setup Guide
 
-## Guide to set up locally
+1. **Fork and Clone** the repository:
 
-1. Fork the project and then clone it to your computer
+   ```bash
+   git clone git@github.com:<your-user-name>/medirepo.git
+   ```
 
-```
-git clone git@github.com:<your-user-name>/medirepo.git
-```
+2. **Install dependencies** (refer to `.tool-versions` for version details):
 
-2. Install libs
-   (`.tool-versions` file has versions especifications)
+   ```bash
+   mix deps.get
+   ```
 
-```
-mix deps.get
-```
+3. **Start PostgreSQL** to support the database.
 
-3. Postgres must be running
+4. **Set up the database**:
 
-4. Setup Database
+   ```bash
+   mix ecto.setup
+   ```
 
-```
-mix ecto.setup
-```
+5. **Configure environment variables** using the `.env-sample` file, including your SMTP server details for email notifications. During development, view sent emails at `localhost:4000/sent_emails` using Bamboo viewer.
 
-5. Use `.env-sample` file to create your environment variables, set your username/password to your SMTP server, if don't have one just create with any name. In Dev environment you can access sent emails using Bamboo viewer (localhost:4000/sent_emails).
+6. **Run the application**:
 
-6. Run the project
+   ```bash
+   iex -S mix phx.server
+   ```
 
-```
-iex -S mix phx.server
-```
+---
 
-## Contributing
+## 🤝 Contributing
 
-See you [contributing guidelines](CONTRIBUTING.md) and our [Code of condute.](CODE_OF_CONDUCT.md)
+Check out our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md). You can help by:
 
-You can contribute to this project including:
+- Adding new features
+- Improving architecture
+- Fixing bugs
+- Expanding test coverage
+- Starring the project ⭐
 
-- new features;
-- architectural improvements;
-- searching bugs;
-- adding test coverage;
-- starring the project :star:
+**We welcome your contributions!**
 
-Feel free to contribute!
+---
 
-## HacktoberFest
+## 🎃 HacktoberFest
 
-If you came here for Hacktoberfest:
-
-Celebrate [Hacktoberfest](https://hacktoberfest.com/) by getting involved in the open source community by completing some tasks in this project.
-
-This repository is open to all members of the GitHub community. Any member may contribute to this project without being a collaborator.
+Contribute to this project as part of **[Hacktoberfest](https://hacktoberfest.com/)**!
 
 ### What is Hacktoberfest?
 
-🎃 HacktoberFest is digitalocean’s annual event that encourages people to contribute to open source throughout October. Much of modern tech infrastructure—including some of digitalocean’s own products—relies on open-source projects built and maintained by passionate people who often don’t have the staff or budgets to do much more than keeping the project alive. 🎃 HacktoberFest is all about giving back to those projects, sharpening skills, and celebrating all things open source, especially the people that make open source so special.
+Hacktoberfest, organized by DigitalOcean, is a month-long celebration encouraging contributions to open-source projects. It’s a great way to give back to the community, sharpen your skills, and support projects that make a difference.
 
-[https://hacktoberfest.com/](https://hacktoberfest.com/)
+[Learn more about Hacktoberfest](https://hacktoberfest.com/)
 
-## Screenshots
+---
 
-![bulletin2](https://user-images.githubusercontent.com/57791712/119598328-1f7fca00-bdb9-11eb-87a9-7b4ee4c35ee0.gif)
+## 📸 Screenshots
 
-## Feedback
+![Bulletin Example](https://user-images.githubusercontent.com/57791712/119598328-1f7fca00-bdb9-11eb-87a9-7b4ee4c35ee0.gif)
 
-If you have any feedback, please reach out to me at andrgab@gmail.com
+---
 
-## Author
+## 📬 Feedback
 
-Made with :purple_heart:
+Have any feedback? Feel free to reach out to me at **andrgab@gmail.com**
 
- <a href="https://www.linkedin.com/in/andrgab/" target="_blank" rel="noopener noreferrer">
-    <img alt="Made by" src="https://img.shields.io/badge/made%20by-Andre%20Gabriel-ff69b4?logo=linkedin">
- </a>
+## 👤 Author
 
-## Contributors
+Made with 💜 by **Andre Gabriel**
 
-<a href="https://github.com/andrgab/medirepo/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=andrgab/medirepo" />
+<a href="https://www.linkedin.com/in/andrgab/" target="_blank" rel="noopener noreferrer">
+    <img alt="LinkedIn" src="https://img.shields.io/badge/connect%20with-Andre%20Gabriel-ff69b4?logo=linkedin">
 </a>
 
-## Credits
+## 🌟 Contributors
 
-Contributors image made with [contrib.rocks](https://contrib.rocks).
+<a href="https://github.com/andrgab/medirepo/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=andrgab/medirepo" alt="Contributors">
+</a>
+
+---
+
+## 🏅 Credits
+
+Contributors image created with [contrib.rocks](https://contrib.rocks).
