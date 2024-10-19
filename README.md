@@ -1,7 +1,3 @@
-Here's an improved version with a refined structure, enhanced readability, and consistent styling:
-
----
-
 <h1 align="center">
   <img alt="MediRepo Logo" src="https://user-images.githubusercontent.com/57791712/194556500-f4291b47-325e-43b2-adb6-e224152fd327.png">
 </h1>
