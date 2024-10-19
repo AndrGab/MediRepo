@@ -1,14 +1,9 @@
-# This file is responsible for configuring your application
-# and its dependencies with the aid of the Mix.Config module.
-#
-# This configuration file is loaded before any dependency and
-# is restricted to this project.
-
-# General application configuration
-use Mix.Config
+import Config
 
 config :medirepo,
   ecto_repos: [Medirepo.Repo]
+
+config :medirepo, environment: config_env()
 
 config :medirepo, Medirepo.Repo,
   migration_primary_key: [type: :binary_id],
@@ -30,8 +25,8 @@ config :medirepo, Medirepo.Mailer,
   server: "smtp.umbler.com",
   hostname: "smtp.umbler.com",
   port: 587,
-  username: Application.get_env(:medirepo, :smtp_username) || System.get_env("SMTP_USERNAME"),
-  password: Application.get_env(:medirepo, :smtp_password) || System.get_env("SMTP_PASSWORD"),
+  username: Application.compile_env(:medirepo, :smtp_username) || System.get_env("SMTP_USERNAME"),
+  password: Application.compile_env(:medirepo, :smtp_password) || System.get_env("SMTP_PASSWORD"),
   tls: :never,
   allowed_tls_versions: ["tlsv1", "tlsv1.1", "tlsv1.2"],
   ssl: false,

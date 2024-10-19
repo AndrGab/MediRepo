@@ -5,8 +5,8 @@ defmodule MedirepoWeb.Resolvers.Hospital do
 
   def get_hospitals(_parent, _args, _resolution) do
     case Hospitals.get_hospitals() do
-      {:error, _} -> []
       {:ok, result} -> {:ok, result}
+      _error -> {:error, message: "Not found", details: "Empty database"}
     end
   end
 

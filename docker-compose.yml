@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  medirepo:
+    stdin_open: true
+    tty: true
+    image: medirepo
+    command: iex -S mix phx.server
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+      - "4001:4001"
+    volumes:
+      - .:/app
+      - medirepo_build:/app/_build/
+      - medirepo_deps:/app/deps
+    depends_on:
+      - db
+    networks:
+      - medirepo
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "10"
+
+  db:
+    image: postgres:14.5
+    container_name: medirepo_db
+    environment:
+      POSTGRES_PASSWORD: medirepo
+      POSTGRES_USER: medirepo
+      POSTGRES_DB: medirepo_dev
+    ports:
+      - "5432:5432"
+    restart: always
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    networks:
+      - medirepo
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "10"
+
+networks:
+  medirepo:
+    name: medirepo
+
+volumes:
+  medirepo_build:
+  medirepo_deps:

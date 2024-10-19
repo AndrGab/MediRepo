@@ -13,7 +13,7 @@ jobs:
 
     services:
       db:
-        image: postgres:11
+        image: postgres:12
         ports: ["5432:5432"]
         env:
           POSTGRES_PASSWORD: postgres
@@ -24,14 +24,14 @@ jobs:
           --health-retries 5
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Set up Elixir
-        uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
+        uses: erlef/setup-beam@v1
         with:
-          elixir-version: "1.12.0" # Define the elixir version [required]
-          otp-version: "23.0" # Define the OTP version [required]
+          elixir-version: "1.13.1"
+          otp-version: "24.2" # Define the OTP version [required]
       - name: Restore dependencies cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: deps
           key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
@@ -88,4 +88,3 @@ jobs:
           GIGALIXIR_APP: elderly-joyous-pangolin # Feel free to also put this in your secrets
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           MIGRATIONS: false
-

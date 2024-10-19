@@ -26,7 +26,6 @@ Here's an improved version with a refined structure, enhanced readability, and c
   <img alt="License" src="https://img.shields.io/github/license/Andrgab/MediRepo?color=ff69b4">
 </p>
 
----
 
 ## 🚀 Introduction
 
@@ -93,8 +92,6 @@ Use our intuitive interface at **[MediRepo Web](https://medirepo.vercel.app/)** 
    iex -S mix phx.server
    ```
 
----
-
 ## 🤝 Contributing
 
 Check out our [Contributing Guidelines](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md). You can help by:
@@ -125,7 +122,6 @@ Hacktoberfest, organized by DigitalOcean, is a month-long celebration encouragin
 
 ![Bulletin Example](https://user-images.githubusercontent.com/57791712/119598328-1f7fca00-bdb9-11eb-87a9-7b4ee4c35ee0.gif)
 
----
 
 ## 📬 Feedback
 
