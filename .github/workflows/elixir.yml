@@ -19,6 +19,7 @@ jobs:
           POSTGRES_USER: medirepo
           POSTGRES_PASSWORD: medirepo
           POSTGRES_DB: medirepo_test
+          POSTGRES_HOST: localhost
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -50,11 +51,15 @@ jobs:
 
       - name: Setup database
         run: |
+          mix ecto.drop --force || true
           mix ecto.create
           mix ecto.migrate
         env:
           MIX_ENV: test
           DATABASE_URL: ecto://medirepo:medirepo@localhost:5432/medirepo_test
+          POSTGRES_USER: medirepo
+          POSTGRES_PASSWORD: medirepo
+          POSTGRES_HOST: localhost
 
       - name: Check Formatting
         run: mix format --check-formatted
@@ -67,6 +72,9 @@ jobs:
         env:
           MIX_ENV: test
           DATABASE_URL: ecto://medirepo:medirepo@localhost:5432/medirepo_test
+          POSTGRES_USER: medirepo
+          POSTGRES_PASSWORD: medirepo
+          POSTGRES_HOST: localhost
 
       - name: Run codecov Script
         run: bash <(curl -s https://codecov.io/bash)
@@ -78,6 +86,9 @@ jobs:
         env:
           MIX_ENV: test
           DATABASE_URL: ecto://medirepo:medirepo@localhost:5432/medirepo_test
+          POSTGRES_USER: medirepo
+          POSTGRES_PASSWORD: medirepo
+          POSTGRES_HOST: localhost
 
       - name: Run digest
         run: mix phx.digest
