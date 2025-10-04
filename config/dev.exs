@@ -5,7 +5,7 @@ config :medirepo, Medirepo.Repo,
   username: "medirepo",
   password: "medirepo",
   database: "medirepo_dev",
-  hostname: "db",
+  hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

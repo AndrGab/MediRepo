@@ -1,4 +1,4 @@
-FROM bitwalker/alpine-elixir:1.14.0 AS build
+FROM bitwalker/alpine-elixir:1.17.3 AS build
 
 RUN apk update \
     && apk add --no-cache tzdata ncurses-libs postgresql-client build-base openssh-client \

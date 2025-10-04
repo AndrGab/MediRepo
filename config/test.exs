@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure your database
 #
@@ -9,7 +9,7 @@ config :medirepo, Medirepo.Repo,
   username: "medirepo",
   password: "medirepo",
   database: "medirepo_test#{System.get_env("MIX_TEST_PARTITION")}",
-  hostname: "db",
+  hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
@@ -19,7 +19,7 @@ config :medirepo, MedirepoWeb.Endpoint,
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger, level: :warning
 
 config :pbkdf2_elixir, :rounds, 1
 
