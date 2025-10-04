@@ -43,3 +43,8 @@ medirepo-*.tar
 /.direnv/
 
 .env
+ßconfig/dev.config.exs
+config/test.config.exs
+config/prod.config.exs
+
+config/prod.secret.exs
