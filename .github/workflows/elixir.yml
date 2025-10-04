@@ -16,7 +16,9 @@ jobs:
         image: postgres:12
         ports: ["5432:5432"]
         env:
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: medirepo
+          POSTGRES_PASSWORD: medirepo
+          POSTGRES_DB: medirepo_test
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -46,6 +48,14 @@ jobs:
           mix local.hex --force
           mix deps.get
 
+      - name: Setup database
+        run: |
+          mix ecto.create
+          mix ecto.migrate
+        env:
+          MIX_ENV: test
+          DATABASE_URL: ecto://medirepo:medirepo@localhost:5432/medirepo_test
+
       - name: Check Formatting
         run: mix format --check-formatted
 
@@ -56,6 +66,7 @@ jobs:
         run: mix coveralls.json
         env:
           MIX_ENV: test
+          DATABASE_URL: ecto://medirepo:medirepo@localhost:5432/medirepo_test
 
       - name: Run codecov Script
         run: bash <(curl -s https://codecov.io/bash)
@@ -64,6 +75,9 @@ jobs:
 
       - name: Run tests
         run: mix test
+        env:
+          MIX_ENV: test
+          DATABASE_URL: ecto://medirepo:medirepo@localhost:5432/medirepo_test
 
       - name: Run digest
         run: mix phx.digest
