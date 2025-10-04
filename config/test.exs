@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure your database
 #
@@ -6,10 +6,11 @@ use Mix.Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :medirepo, Medirepo.Repo,
-  username: "medirepo",
-  password: "medirepo",
+  username: "admin",
+  password: "pass",
   database: "medirepo_test#{System.get_env("MIX_TEST_PARTITION")}",
-  hostname: "db",
+  hostname: "localhost",
+  port: 5442,
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
@@ -19,7 +20,7 @@ config :medirepo, MedirepoWeb.Endpoint,
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
+config :logger, level: :warning
 
 config :pbkdf2_elixir, :rounds, 1
 

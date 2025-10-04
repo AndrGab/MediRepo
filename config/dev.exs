@@ -2,10 +2,11 @@ import Config
 
 # Configure your database
 config :medirepo, Medirepo.Repo,
-  username: "medirepo",
-  password: "medirepo",
+  username: "admin",
+  password: "pass",
   database: "medirepo_dev",
-  hostname: "db",
+  hostname: "localhost",
+  port: 5442,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
